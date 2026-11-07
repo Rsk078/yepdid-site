@@ -48,8 +48,9 @@
   color-scheme: light;
 }
 
+/* Light unless the visitor picks Dark, or picks System on a device set to dark. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root[data-theme="system"] {
     --bg: var(--navy);
     --text: var(--mint);
     --muted: #a9b0c6;
@@ -133,8 +134,8 @@ button { font: inherit; color: inherit; }
 .theme-btn svg { position: absolute; width: 20px; height: 20px; transition: transform 0.55s cubic-bezier(.2,1.4,.4,1), opacity 0.3s; }
 .theme-btn .sun { transform: translateY(28px) rotate(-90deg); opacity: 0; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-btn .moon { transform: translateY(-28px) rotate(90deg); opacity: 0; }
-  :root:not([data-theme="light"]) .theme-btn .sun { transform: none; opacity: 1; }
+  :root[data-theme="system"] .theme-btn .moon { transform: translateY(-28px) rotate(90deg); opacity: 0; }
+  :root[data-theme="system"] .theme-btn .sun { transform: none; opacity: 1; }
 }
 :root[data-theme="dark"] .theme-btn .moon { transform: translateY(-28px) rotate(90deg); opacity: 0; }
 :root[data-theme="dark"] .theme-btn .sun { transform: none; opacity: 1; }

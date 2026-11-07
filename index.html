@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yepdid: shared tasks for two</title>
+  <meta name="description" content="Yepdid is a to-do app for you and your person. One of you ticks a task, the other confirms it, and Yepdid keeps the score: deadlines, busy times, shared costs and little rewards.">
+  <meta name="theme-color" content="#060E28">
+  <link rel="icon" href="img/favicon-64.png" type="image/png">
+  <link rel="icon" href="img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="canonical" href="https://yepdid.com/">
+  <meta property="og:title" content="Yepdid: shared tasks for two">
+  <meta property="og:description" content="One of you ticks it, the other confirms it. Yepdid keeps the score.">
+  <meta property="og:image" content="https://yepdid.com/img/icon-512.png">
+  <meta property="og:url" content="https://yepdid.com/">
+  <meta name="twitter:card" content="summary">
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("yepdid.theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;var b=localStorage.getItem("yepdid.brand");if(b)document.documentElement.style.setProperty("--brand",b);}catch(e){}</script>
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+    <symbol id="i-bellplus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0M15 8h6M18 5v6M20.002 14.464a9 9 0 0 0 .738.863A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 8.75-5.332"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-dots" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></symbol>
+    <symbol id="i-paw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></symbol>
+    <symbol id="i-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10M10 20c5.5-2.5.8-6.4 3-10M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8zM14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-pay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+    <symbol id="i-gym" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829zM21.5 21.5l-1.4-1.4M3.9 3.9 2.5 2.5M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0zM20 3v4M22 5h-4"/></symbol>
+    <symbol id="i-calclock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5M16 2v4M8 2v4M3 10h5M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></symbol>
+    <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16M16 16h5v5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1zM9 12l2 2 4-4"/></symbol>
+    <symbol id="i-eyeoff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49M14.084 14.158a3 3 0 0 1-4.242-4.242M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143M2 2l20 20"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M3.61 1.81 13.79 12 3.61 22.19a1.5 1.5 0 0 1-.61-1.22V3.03c0-.5.24-.95.61-1.22zm10.89 10.9 2.43 2.43-11.2 6.48 8.77-8.91zm3.4-3.4 3.04 1.76a1.5 1.5 0 0 1 0 2.6l-3.04 1.76-2.7-2.71 2.7-2.71v-.7zM5.73 1.38l11.2 6.48-2.43 2.43-8.77-8.91z"/></symbol>
+    <symbol id="i-squiggle" viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 30c10-14 24-20 38-14 10 4 16 2 28-8M60 4l10 4-4 10"/></symbol>
+  </defs>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="top-logo" href="#" aria-label="Yepdid home"><svg viewBox="156 150 1138 362" aria-hidden="true"><use href="#logo-mark"/></svg></a>
+    <nav aria-label="Site">
+      <a href="privacy.html">Privacy</a>
+      <a class="pill" href="#get">Get the app</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home-hero">
+    <div class="drift" aria-hidden="true"></div>
+    <div class="wrap">
+      <svg class="hero-logo" id="hero-logo" viewBox="156 150 1138 362" role="img" aria-labelledby="logo-title">
+        <title id="logo-title">Yepdid! A ticked pixel speech bubble. Click it to build it again.</title>
+        <defs>
+          <g id="logo-mark">
+            <path d="M164 267.2h23.6v141.6h-23.6zM187.6 243.6h23.6v23.6h-23.6zM187.6 408.8h23.6v23.6h-23.6zM211.2 220h165.2v23.6h-165.2zM211.2 432.4h23.6v47.2h-23.6zM211.2 479.6h47.2v23.6h-47.2zM258.4 456h23.6v23.6h-23.6zM282 432.4h94.4v23.6h-94.4zM376.4 243.6h23.6v23.6h-23.6zM376.4 408.8h23.6v23.6h-23.6zM400 267.2h23.6v141.6h-23.6z" fill="currentColor" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M187.6 267.2h212.4v141.6h-212.4zM211.2 243.6h165.2v23.6h-165.2zM211.2 408.8h165.2v23.6h-165.2zM234.8 432.4h47.2v23.6h-47.2zM234.8 456h23.6v23.6h-23.6z" fill="#90FA90" stroke="#90FA90" stroke-width=".6"/>
+            <path d="M352.8 243.6h23.6v23.6h-23.6zM376.4 338.0h23.6v23.6h-23.6zM376.4 361.6h23.6v23.6h-23.6zM376.4 385.2h23.6v23.6h-23.6zM329.2 408.8h23.6v23.6h-23.6zM352.8 408.8h23.6v23.6h-23.6z" fill="#6FF47E"/>
+            <path d="M234.8 267.2h23.6v23.6h-23.6zM211.2 290.8h23.6v23.6h-23.6z" fill="#FFFFFF"/>
+            <path d="M258.4 267.2h23.6v23.6h-23.6z" fill="#FFFFFF" fill-opacity=".5"/>
+            <path d="M257.22 348.62L283.18 374.58L343.36 314.40" fill="none" stroke="#060E28" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M420 201L451 162.5M448.5 231.5L493.5 208.5" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round"/>
+            <path id="wordmark" d="M461 270.5h51v34h-51zM478 304.5h51v17h-51zM495 321.5h51v17h-51zM495 338.5h110.5v8.5h-110.5zM503.5 347h93.5v8.5h-93.5zM512 355.5h76.5v17h-76.5zM529 372.5h42.5v76.5h-42.5zM554.5 321.5h51v17h-51zM571.5 304.5h51v17h-51zM588.5 270.5h51v34h-51zM622.5 338.5h119v8.5h-119zM622.5 347h42.5v25.5h-42.5zM622.5 372.5h119v8.5h-119zM622.5 381h110.5v8.5h-110.5zM622.5 389.5h93.5v8.5h-93.5zM622.5 398h42.5v17h-42.5zM622.5 415h110.5v8.5h-110.5zM622.5 423.5h119v8.5h-119zM639.5 321.5h76.5v8.5h-76.5zM639.5 330h93.5v8.5h-93.5zM639.5 432h85v8.5h-85zM639.5 440.5h76.5v8.5h-76.5zM699 347h42.5v25.5h-42.5zM758.5 321.5h34v8.5h-34zM758.5 330h110.5v8.5h-110.5zM758.5 338.5h119v8.5h-119zM758.5 347h42.5v59.5h-42.5zM758.5 406.5h119v17h-119zM758.5 423.5h110.5v8.5h-110.5zM758.5 432h102v8.5h-102zM758.5 440.5h42.5v59.5h-42.5zM801 321.5h59.5v8.5h-59.5zM835 347h42.5v59.5h-42.5zM894.5 338.5h119v8.5h-119zM894.5 347h42.5v59.5h-42.5zM894.5 406.5h119v25.5h-119zM911.5 321.5h102v17h-102zM911.5 432h59.5v17h-59.5zM971 262h42.5v59.5h-42.5zM971 347h42.5v59.5h-42.5zM979.5 432h34v17h-34zM1030.5 321.5h42.5v127.5h-42.5zM1090 338.5h119v8.5h-119zM1090 347h42.5v59.5h-42.5zM1090 406.5h119v25.5h-119zM1107 321.5h102v17h-102zM1107 432h59.5v17h-59.5zM1166.5 262h42.5v59.5h-42.5zM1166.5 347h42.5v59.5h-42.5zM1175 432h34v17h-34zM1039.5 262H1064.0L1073.0 271V295.5L1064.0 304.5H1039.5L1030.5 295.5V271Z" fill="currentColor" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round"/>
+            <path d="M1243.5 262H1276.5L1285.5 271V372.0L1276.5 381.0H1243.5L1234.5 372.0V271ZM1243.5 398.0H1276.5L1285.5 407.0V440.0L1276.5 449.0H1243.5L1234.5 440.0V407.0Z" fill="#FD7501" stroke="#FD7501" stroke-width="4.5" stroke-linejoin="round"/>
+          </g>
+          <clipPath id="cl-y"><rect x="455" y="250" width="167" height="210"/><rect x="622" y="250" width="20" height="71"/></clipPath>
+          <clipPath id="cl-e"><rect x="621" y="321" width="122" height="132"/></clipPath>
+          <clipPath id="cl-p"><rect x="756" y="250" width="124" height="256"/></clipPath>
+          <clipPath id="cl-d1"><rect x="892" y="250" width="124" height="206"/></clipPath>
+          <clipPath id="cl-i"><rect x="1028" y="250" width="48" height="206"/></clipPath>
+          <clipPath id="cl-d2"><rect x="1088" y="250" width="124" height="206"/></clipPath>
+        </defs>
+        <g class="bubble" id="logo-bubble"></g>
+        <path class="check" d="M257.22 348.62L283.18 374.58L343.36 314.40" fill="none" stroke="#060E28" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="pop pop1" d="M420 201L451 162.5" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round"/>
+        <path class="pop pop2" d="M448.5 231.5L493.5 208.5" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round"/>
+        <g class="letters" fill="currentColor">
+          <g class="letter" clip-path="url(#cl-y)"><use href="#wordmark" fill="currentColor" stroke="currentColor"/></g>
+          <g class="letter" clip-path="url(#cl-e)"><use href="#wordmark" fill="currentColor" stroke="currentColor"/></g>
+          <g class="letter" clip-path="url(#cl-p)"><use href="#wordmark" fill="currentColor" stroke="currentColor"/></g>
+          <g class="letter" clip-path="url(#cl-d1)"><use href="#wordmark" fill="currentColor" stroke="currentColor"/></g>
+          <g class="letter" clip-path="url(#cl-i)"><use href="#wordmark" fill="currentColor" stroke="currentColor"/></g>
+          <g class="letter" clip-path="url(#cl-d2)"><use href="#wordmark" fill="currentColor" stroke="currentColor"/></g>
+        </g>
+        <path class="bang" d="M1243.5 262H1276.5L1285.5 271V372.0L1276.5 381.0H1243.5L1234.5 372.0V271ZM1243.5 398.0H1276.5L1285.5 407.0V440.0L1276.5 449.0H1243.5L1234.5 440.0V407.0Z" fill="#FD7501" stroke="#FD7501" stroke-width="4.5" stroke-linejoin="round"/>
+      </svg>
+      <p class="hero-note hand" aria-hidden="true">It's more fun together!<svg><use href="#i-squiggle"/></svg></p>
+
+      <div class="hero-copy">
+        <h1>Two people, one list, and a <span class="tick">yep</span> when it's done.</h1>
+        <p class="lede">Yepdid is a to-do app for you and your person. One of you ticks a task, the other confirms it, and Yepdid keeps the score: deadlines that respect busy time, costs you split, and little rewards you owe each other.</p>
+      </div>
+      <div class="stores" data-stores></div>
+      <div class="scroll-cue" aria-hidden="true"><span>↓</span></div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div>
+      <span>Mark done</span><span>Confirm?</span><span>Poked you</span><span>Half each</span><span>Surprise!</span><span>Not yet</span><span>Pizza night</span><span>Busy then</span><span>All square</span><span>Yepdid!</span>
+      <span>Mark done</span><span>Confirm?</span><span>Poked you</span><span>Half each</span><span>Surprise!</span><span>Not yet</span><span>Pizza night</span><span>Busy then</span><span>All square</span><span>Yepdid!</span>
+    </div>
+  </div>
+
+  <!-- 1. The two ticks: the task page. -->
+  <section class="chapter" id="ticks" data-dock="1">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say reveal"><span class="face ben" aria-hidden="true">B</span><div class="px-bubble"><div class="out"><div class="in">Can you grab milk on the way home?</div></div></div></div>
+        <div class="say right reveal d2"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble green"><div class="out"><div class="in">Yepdid! 🥛</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-check"/></svg></i>The task page</span>
+        <h2 class="reveal">Done means both of you say so.</h2>
+        <p class="reveal">Every shared task takes two ticks. The one doing it taps <strong>Mark done</strong>. The other sees <strong>Confirm?</strong> and makes it official, and then comes the confetti.</p>
+        <p class="reveal">Not quite done? Tap <strong>Not yet</strong> and send it back with a reason. Waiting on them? The little hand <strong>pokes</strong> your partner, and the bell sets a reminder for you.</p>
+        <p class="try reveal">Be Asha, then Ben <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-ticks">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <div class="push" data-push><img src="img/apple-touch-icon.png" alt=""><div><b data-push-title>👉 Asha poked you</b><span data-push-body>Can you confirm “Pick up milk”?</span></div></div>
+            <div class="head-row">
+              <span class="round"><svg><use href="#i-back"/></svg></span>
+              <span class="chip on" data-who>Asha's phone</span>
+              <div class="grp">
+                <button class="round hand-btn" data-poke aria-label="Poke your partner"><svg><use href="#i-hand"/></svg></button>
+                <button class="round" data-remind aria-label="Remind me"><svg><use href="#i-bellplus"/></svg></button>
+              </div>
+            </div>
+            <div class="t-hero">
+              <div class="big-ring" data-ring><svg><use href="#i-check"/></svg></div>
+              <h4>Pick up milk</h4>
+              <span class="tag new" data-status>✱ New</span>
+              <span class="due-pill" data-due>Due today 7:00 pm, for Asha</span>
+            </div>
+            <div class="timeline">
+              <b>Timeline</b>
+              <ul data-timeline><li><i></i><span>Ben created</span><small>2 min ago</small></li></ul>
+            </div>
+            <div class="good-job" data-goodjob><div class="px-bubble green"><div class="out"><div class="in">GOOD JOB!</div></div></div></div>
+            <div style="margin-top:auto;display:grid;gap:6px">
+              <button class="btn" data-main>✓ Mark done</button>
+              <button class="btn ghost" data-notyet hidden>Not yet</button>
+            </div>
+            <div class="toast" role="status" aria-live="polite" data-toast></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Home. -->
+  <section class="chapter flip" id="home" data-dock="0">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">So what's on today?</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-list"/></svg></i>Home</span>
+        <h2 class="reveal">Your shared board, already sorted.</h2>
+        <p class="reveal">Home sorts everything into <strong>Waiting for you</strong>, <strong>Overdue</strong>, <strong>Today</strong>, <strong>Tomorrow</strong>, <strong>This week</strong> and <strong>Later</strong>. The ring around your face fills as today's tasks get ticked.</p>
+        <p class="reveal">Tap a day on the strip to see just that day. Filter by <strong>All</strong>, <strong>Mine</strong>, your partner's name or <strong>Private</strong>. Swipe a task right to mark it done, or tap it to open it.</p>
+        <p class="try reveal">Swipe a card right, or tap a filter <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-home">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <div class="hero-bar">
+              <div class="ring"><svg viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="18"/><circle class="arc" cx="20" cy="20" r="18" data-arc/></svg><b>A</b></div>
+              <div class="hb-words"><strong>Hello, Asha</strong><span data-left>3 things left today</span></div>
+              <span class="round"><svg><use href="#i-bell"/></svg></span>
+            </div>
+            <div class="week" data-week></div>
+            <div class="chips" data-filters>
+              <button class="chip" aria-pressed="true" data-f="all">All</button>
+              <button class="chip" aria-pressed="false" data-f="mine">Mine</button>
+              <button class="chip" aria-pressed="false" data-f="ben">Ben</button>
+              <button class="chip" aria-pressed="false" data-f="private">Private</button>
+            </div>
+            <div class="list" data-board></div>
+            <div class="tabbar" aria-hidden="true"><span class="add">+ New task</span><span class="icons"><span class="on"><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
+            <div class="toast" role="status" aria-live="polite" data-toast></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. New task. -->
+  <section class="chapter" id="new" data-dock="1">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say reveal"><span class="face ben" aria-hidden="true">B</span><div class="px-bubble"><div class="out"><div class="in">Plants need water before Tuesday!</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-calclock"/></svg></i>New task</span>
+        <h2 class="reveal">A new task in a few taps.</h2>
+        <p class="reveal">Write it, choose who it's for (<strong>Me</strong>, your partner or <strong>Either</strong>) and when. Tap a day and a time and it's set, with the full date right on the Due chip. Quick picks cover <strong>Today</strong>, <strong>Tomorrow</strong> and <strong>This weekend</strong>.</p>
+        <p class="reveal">Busy time is off limits: try to put a deadline there and it shakes its head. Add a checklist, a reward, keep the reward a <strong>Surprise</strong>, or make the whole task <strong>Private</strong> so only you see it.</p>
+        <p class="try reveal">Tap a time, then the busy one <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-new">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <div class="sheet-head">New task<span class="round"><svg><use href="#i-x"/></svg></span></div>
+            <div class="field"><label>Title</label><div class="input"><span data-type></span><span class="caret"></span></div></div>
+            <div class="field"><label>For</label><div class="chips" data-for>
+              <button class="chip" aria-pressed="false">Me</button><button class="chip" aria-pressed="true">Asha</button><button class="chip" aria-pressed="false">Either</button>
+            </div></div>
+            <div class="field"><label>Due</label><div class="chips">
+              <span class="chip on" data-duechip><svg><use href="#i-calclock"/></svg><span data-duelabel></span></span>
+              <button class="chip" data-quick="0">Today</button><button class="chip" data-quick="1">Tomorrow</button>
+            </div></div>
+            <div class="picker">
+              <div class="chips" data-pdays></div>
+              <div class="slots" data-slots></div>
+              <div class="refusal" data-refusal aria-live="polite"></div>
+            </div>
+            <div class="row-switch"><div>Reward<small data-rewardname>🍕 Pizza night</small></div><div class="emojis" data-emojis style="flex:none"></div></div>
+            <div class="row-switch"><span class="ico"><svg><use href="#i-lock"/></svg></span><div>Surprise<small>They only see there's a reward</small></div><button class="switch" role="switch" aria-checked="false" data-switch aria-label="Surprise"></button></div>
+            <button class="btn" data-add>Add task</button>
+            <div class="toast" role="status" aria-live="polite" data-toast></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Schedule. -->
+  <section class="chapter flip" id="schedule" data-dock="2">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">I'm at work till six, don't plan me in!</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-cal"/></svg></i>Schedule</span>
+        <h2 class="reveal">When you're busy, it already knows.</h2>
+        <p class="reveal">Add busy time once or every week, and see both of you side by side, with busy runs hatched like the pixels in our logo. A deadline can't land inside your busy time, and Yepdid points you to the next free slot.</p>
+        <p class="reveal">Connect Google Calendar and your busy times fill in by themselves. It <strong>shows when you're busy, never what you're doing</strong>: Yepdid only ever reads free and busy times, never event names.</p>
+        <p class="try reveal">Press sync <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-sched">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <div class="head-row"><span class="round"><svg><use href="#i-back"/></svg></span><b style="font-size:14px" data-sday>Today</b><span class="round" style="transform:scaleX(-1)"><svg><use href="#i-back"/></svg></span></div>
+            <div class="gcal"><span class="g"></span><div><b>Google Calendar</b><span data-sync-label>Shows when you're busy, never what you're doing.</span></div><button class="round" data-sync aria-label="Sync now"><svg data-sync-icon><use href="#i-sync"/></svg></button></div>
+            <div class="sched">
+              <div class="hours"><span></span><span>2 pm</span><span>3 pm</span><span>4 pm</span><span>5 pm</span><span>6 pm</span><span>7 pm</span><span>8 pm</span></div>
+              <div class="col"><div class="col-head"><i style="background:var(--ocean)"></i>Ben</div>
+                <div class="blk" data-blk style="--c:var(--ocean);top:16%;height:24%">🏋️ Gym</div>
+                <div class="blk" data-gblk style="--c:#c7d2fe;top:46%;height:22%">Busy</div>
+              </div>
+              <div class="col"><div class="col-head"><i style="background:var(--coral)"></i>Asha</div>
+                <div class="blk" data-blk style="--c:var(--coral);top:9%;height:58%">💼 Work</div>
+              </div>
+              <div class="dl" style="top:80%;left:30px"><span>🥛 Pick up milk 7:00 pm</span></div>
+            </div>
+            <div class="tabbar" aria-hidden="true"><span class="add">+ Busy time</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span class="on"><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Money. -->
+  <section class="chapter" id="money" data-dock="3">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say reveal"><span class="face ben" aria-hidden="true">B</span><div class="px-bubble"><div class="out"><div class="in">I got the groceries, ₹1,200.</div></div></div></div>
+        <div class="say right reveal d2"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Half each? Put it in.</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-wallet"/></svg></i>Money</span>
+        <h2 class="reveal">Split it. Yepdid keeps the score.</h2>
+        <p class="reveal">Add what one of you paid and how it splits: <strong>Half each</strong>, all for the other person, or a <strong>Custom</strong> share. The card up top says who owes whom, and <strong>Settle up</strong> records a payback until you're <strong>All square</strong>.</p>
+        <p class="reveal">It's a shared tally in rupees, not a wallet: no money ever moves through Yepdid. A finished task can carry its cost too.</p>
+        <p class="try reveal">Add one, then settle up <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-money">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <b style="font-size:18px;font-weight:800">Money</b>
+            <div class="balance">
+              <span data-owe>Asha owes you</span>
+              <strong data-amount>₹430</strong>
+              <div class="seesaw" data-seesaw><div class="beam"><span>B</span><span>A</span></div><div class="pivot"></div></div>
+            </div>
+            <div class="chips"><button class="chip on" data-addexp>+ Add expense</button><button class="chip" data-settle>Settle up</button></div>
+            <div class="list" data-mlines></div>
+            <div class="tabbar" aria-hidden="true"><span class="add">+ Expense</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span class="on"><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
+            <div class="toast" role="status" aria-live="polite" data-toast></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Rewards. -->
+  <section class="chapter flip" id="rewards" data-dock="4">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Dishes all week and I owe you something nice…</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-gift"/></svg></i>Rewards</span>
+        <h2 class="reveal">Little treats you owe each other.</h2>
+        <p class="reveal">Put a reward on a task, like 🍣 dinner out or 🍕 pizza night. It's <strong>Offered</strong> while the task is open and <strong>Earned 🎉</strong> once you've both ticked it. Then whoever owes it marks it <strong>Delivered</strong>. Miss the deadline and the reward is forfeited.</p>
+        <p class="reveal">Or keep it a <strong>Surprise</strong>: your partner sees that there's a reward, but not what it is, until you've both checked.</p>
+        <p class="try reveal">Open the present <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-rewards">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <b style="font-size:18px;font-weight:800">Rewards</b>
+            <div class="owed"><div>Owed to you<b data-owedyou>2</b></div><div>You owe<b>1</b></div></div>
+            <div class="states" data-states><span>Proposed</span><span>Offered</span><span>Pending confirm</span><span>Earned 🎉</span><span>Delivered</span></div>
+            <div class="gift-area">
+              <button class="gift" data-gift aria-label="Open the surprise"><span class="lid"><span class="bow">🎀</span></span><span class="prize">🍕</span><span class="box"></span></button>
+            </div>
+            <div class="reveal-card" data-revealcard><h5>Surprise!</h5><p>Asha owes you this for “Do the dishes”</p><div style="font-size:30px">🍕</div><b>Pizza night</b><button class="btn" style="margin-top:8px" data-nice>Nice!</button></div>
+            <div class="tabbar" aria-hidden="true"><span class="add">+ New task</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span class="on"><svg><use href="#i-gift"/></svg></span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Activity and pokes. -->
+  <section class="chapter" id="activity" data-dock="4">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say reveal"><span class="face ben" aria-hidden="true">B</span><div class="px-bubble"><div class="out"><div class="in">Did you see? I did the plants.</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-bell"/></svg></i>Activity</span>
+        <h2 class="reveal">Everything that happened, in one feed.</h2>
+        <p class="reveal">The bell keeps a running story of your board: who created, ticked, confirmed or said not yet, who offered a reward, who added a cost, and when you paired up.</p>
+        <p class="reveal">Need a nudge? A poke lands as a notification on their phone, like “👉 Ben poked you”. One poke per task a minute, so nobody gets spammed.</p>
+        <p class="try reveal">Poke Asha <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-feed">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <div class="push" data-push><img src="img/apple-touch-icon.png" alt=""><div><b>👉 Ben poked you</b><span>Time for “Water the plants”</span></div></div>
+            <div class="head-row"><span class="round"><svg><use href="#i-back"/></svg></span><b style="font-size:16px">Activity</b><span style="width:34px"></span></div>
+            <ul class="feed" data-feed></ul>
+            <button class="btn" style="margin-top:auto" data-pokeasha>👋 Poke Asha</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. You. -->
+  <section class="chapter flip" id="you" data-dock="5">
+    <div class="wrap">
+      <div class="copy">
+        <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Can I make it blue?</div></div></div></div>
+        <span class="screen-name reveal"><i><svg><use href="#i-user"/></svg></i>You</span>
+        <h2 class="reveal">Make it yours. (This page too.)</h2>
+        <p class="reveal">Your name and photo, your pair code, <strong>Light</strong> or <strong>Dark</strong>, and an <strong>App colour</strong>: green, blue, lilac or peach. Connect Google Calendar here, sign out, or delete your account for good.</p>
+        <p class="reveal">Go on, pick a colour or switch to dark. This whole website changes with it.</p>
+        <p class="try reveal">Tap a colour <svg><use href="#i-squiggle"/></svg></p>
+      </div>
+      <div class="stage reveal d1">
+        <div class="phone">
+          <div class="screen" id="demo-you">
+            <div class="status-row"><span>9:41</span><span>●●●</span></div>
+            <b style="font-size:18px;font-weight:800">You</b>
+            <div class="prof"><span class="ava">A</span><div>Asha<small>Paired with Ben</small></div><span class="chip">Edit</span></div>
+            <div class="panel"><h6>App colour</h6><div class="dots" data-dots>
+              <button style="--c:#A5E3AE" aria-pressed="true" aria-label="Green" data-c="#A5E3AE"></button>
+              <button style="--c:#9DB4FF" aria-pressed="false" aria-label="Blue" data-c="#9DB4FF"></button>
+              <button style="--c:#CDB8F5" aria-pressed="false" aria-label="Lilac" data-c="#CDB8F5"></button>
+              <button style="--c:#FFC4A0" aria-pressed="false" aria-label="Peach" data-c="#FFC4A0"></button>
+            </div></div>
+            <div class="panel"><h6>Appearance</h6><div class="seg" data-theme-seg>
+              <button aria-pressed="true" data-t="system">System</button><button aria-pressed="false" data-t="light">Light</button><button aria-pressed="false" data-t="dark">Dark</button>
+            </div></div>
+            <div class="panel"><h6>Your code</h6><p>Share it so your person can pair with you.</p><div class="code" data-code></div><button class="chip on" style="justify-self:center" data-copy>Copy code</button></div>
+            <div class="toast" role="status" aria-live="polite" data-toast></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Pairing, or solo. -->
+  <section class="chapter" id="pair" data-dock="5">
+    <div class="wrap">
+      <div class="copy">
+        <span class="screen-name reveal"><i><svg><use href="#i-user"/></svg></i>Getting started</span>
+        <h2 class="reveal">Just you, or the two of you.</h2>
+        <p class="reveal">Sign in with a 6-digit email code or with Google, then pick <strong>Just me</strong> for your own tasks, checklists and reminders, or <strong>Me and my partner</strong>.</p>
+        <p class="reveal">To pair, share your 8-character code or invite them by email. Start solo today and add your partner later: your tasks come along as private ones.</p>
+      </div>
+      <div class="pair-stage reveal d1">
+        <div class="pair-card" data-solo><div class="faces"><span class="face asha">A</span></div><h3>Just me</h3><p>Your tasks, checklists and reminders. Add a partner any time.</p></div>
+        <div class="pair-card" data-duo><div class="faces"><span class="face asha">A</span><span class="face ben">B</span></div><h3>Me and my partner</h3><p>Share tasks, checks, rewards and costs with your person.</p></div>
+        <div class="pair-code"><span class="hand" style="font-size:26px;color:var(--pixel)">Share this with your person!</span><div class="boxes" data-boxes></div><span data-paired style="font-weight:700;opacity:0;transition:opacity .4s">Paired 🎉</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promise">
+    <div class="wrap">
+      <h2 class="reveal">Polite with your data.</h2>
+      <div class="grid">
+        <div class="item reveal"><span class="glyph"><svg><use href="#i-shield"/></svg></span><b>No ads, no trackers</b><p>There's no advertising or analytics code in the app, and nothing about you is sold.</p></div>
+        <div class="item reveal d1"><span class="glyph"><svg><use href="#i-cal"/></svg></span><b>Busy, never what</b><p>Google Calendar shares only when you're busy. Event names never reach Yepdid.</p></div>
+        <div class="item reveal d2"><span class="glyph"><svg><use href="#i-eyeoff"/></svg></span><b>Private means private</b><p>Private tasks are yours alone, and surprise rewards stay hidden until they're earned.</p></div>
+        <div class="item reveal d3"><span class="glyph"><svg><use href="#i-trash"/></svg></span><b>Delete means delete</b><p>Delete your account in the app and your data goes right away. <a href="privacy.html">Read the privacy policy</a>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="get" id="get" data-dock="6">
+    <div class="rain" aria-hidden="true"></div>
+    <div class="wrap">
+      <svg class="mini-bubble" viewBox="156 150 345 362" aria-hidden="true"><use href="#logo-mark"/></svg>
+      <h2>Yep, get it.</h2>
+      <p>Yepdid is coming to the App Store and Google Play. Questions until then? Write to <a href="mailto:hello@yepdid.com" style="color:var(--pixel)">hello@yepdid.com</a>.</p>
+      <div class="stores" data-stores></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© <span data-year>2026</span> Rajeev Kushwah. Made for two.</span>
+    <nav aria-label="Footer">
+      <a href="privacy.html">Privacy policy</a>
+      <a href="privacy.html#delete">Delete your account</a>
+      <a href="mailto:hello@yepdid.com">hello@yepdid.com</a>
+    </nav>
+  </div>
+</footer>
+
+<nav class="dock" id="dock" aria-label="Jump to a screen">
+  <div class="slots">
+    <span class="ind" aria-hidden="true"></span>
+    <a href="#home"><svg><use href="#i-list"/></svg><span class="tip">Home</span><span class="sr-only">Home</span></a>
+    <a href="#ticks"><svg><use href="#i-check"/></svg><span class="tip">Two ticks</span><span class="sr-only">Two ticks</span></a>
+    <a href="#schedule"><svg><use href="#i-cal"/></svg><span class="tip">Schedule</span><span class="sr-only">Schedule</span></a>
+    <a href="#money"><svg><use href="#i-wallet"/></svg><span class="tip">Money</span><span class="sr-only">Money</span></a>
+    <a href="#rewards"><svg><use href="#i-gift"/></svg><span class="tip">Rewards</span><span class="sr-only">Rewards</span></a>
+    <a href="#you"><svg><use href="#i-user"/></svg><span class="tip">You</span><span class="sr-only">You</span></a>
+  </div>
+  <a class="get-btn" href="#get">Get the app</a>
+</nav>
+
+<canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+<script src="js/site.js" defer></script>
+</body>
+</html>

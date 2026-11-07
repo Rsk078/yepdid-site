@@ -71,15 +71,15 @@
     const root = document.documentElement;
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     const listeners = new Set();
-    const choice = () => root.dataset.theme ?? "system";
+    const choice = () => root.dataset.theme ?? "light";
     const resolve = (t) => (t === "system" ? (mq.matches ? "dark" : "light") : t);
     const effective = () => resolve(choice());
     const notify = () => listeners.forEach((f) => f(choice(), effective()));
     function set(t, from) {
       const apply = () => {
-        if (t === "system") delete root.dataset.theme;
+        if (t === "light") delete root.dataset.theme;
         else root.dataset.theme = t;
-        store.set("yepdid.theme", t === "system" ? null : t);
+        store.set("yepdid.theme", t === "light" ? null : t);
         notify();
       };
       if (!from || reduce || !document.startViewTransition || resolve(t) === effective()) return apply();
@@ -919,7 +919,7 @@
     theme.on((c) => pressTheme(c));
     for (const s of segs) s.addEventListener("click", () => theme.set(s.dataset.t, s));
     const paint = (s) => {
-      codeEl.innerHTML = `${[...s.slice(0, 4)].map((c) => `<span>${c}</span>`).join("")}<span class="dash">-</span>${[...s.slice(4)].map((c) => `<span>${c}</span>`).join("")}`;
+      codeEl.innerHTML = `${Array.from(s.slice(0, 4), (c) => `<span>${c}</span>`).join("")}<span class="dash">-</span>${Array.from(s.slice(4), (c) => `<span>${c}</span>`).join("")}`;
     };
     paint(CODE);
     onSeen(root, async () => {

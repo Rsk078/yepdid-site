@@ -253,7 +253,7 @@
       for (let i = 0; i < 26; i++) {
         const sq = document.createElement("i");
         const s = 6 + Math.round(Math.random() * 14);
-        sq.style.cssText = `--s:${s}px;--c:${colours[i % colours.length]};left:${Math.random() * 100}%;top:${55 + Math.random() * 50}%;--d:${9 + Math.random() * 12}s;--delay:${-Math.random() * 20}s;--dx:${(Math.random() - 0.5) * 160}px;--r:${(Math.random() - 0.5) * 360}deg`;
+        sq.style.cssText = `--s:${s}px;--c:${colours[i % colours.length]};left:${Math.random() < 0.5 ? Math.random() * 13 : 87 + Math.random() * 12}%;top:${40 + Math.random() * 60}%;--d:${9 + Math.random() * 12}s;--delay:${-Math.random() * 20}s;--dx:${(Math.random() - 0.5) * 160}px;--r:${(Math.random() - 0.5) * 360}deg`;
         drift.appendChild(sq);
       }
     }

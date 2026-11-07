@@ -66,6 +66,58 @@
     };
   }
 
+  /* ---------- Light and dark: one controller for the top-bar switch and the You demo ---------- */
+  const theme = (() => {
+    const root = document.documentElement;
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+    const listeners = new Set();
+    const choice = () => root.dataset.theme ?? "system";
+    const resolve = (t) => (t === "system" ? (mq.matches ? "dark" : "light") : t);
+    const effective = () => resolve(choice());
+    const notify = () => listeners.forEach((f) => f(choice(), effective()));
+    function set(t, from) {
+      const apply = () => {
+        if (t === "system") delete root.dataset.theme;
+        else root.dataset.theme = t;
+        store.set("yepdid.theme", t === "system" ? null : t);
+        notify();
+      };
+      if (!from || reduce || !document.startViewTransition || resolve(t) === effective()) return apply();
+      // Spread the new theme out from the button that asked for it.
+      const r = from.getBoundingClientRect();
+      const x = r.left + r.width / 2;
+      const y = r.top + r.height / 2;
+      const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      root.classList.add("theming");
+      const vt = document.startViewTransition(apply);
+      vt.ready
+        .then(() =>
+          root.animate(
+            { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
+            { duration: 700, easing: "cubic-bezier(.3,.9,.3,1)", pseudoElement: "::view-transition-new(root)" },
+          ),
+        )
+        .catch(() => {});
+      vt.finished.finally(() => root.classList.remove("theming"));
+    }
+    mq.addEventListener?.("change", notify);
+    return {
+      set,
+      effective,
+      on(f) {
+        listeners.add(f);
+        f(choice(), effective());
+      },
+    };
+  })();
+
+  function themeToggle() {
+    for (const btn of $$("[data-theme-toggle]")) {
+      theme.on((_, e) => btn.setAttribute("aria-label", e === "dark" ? "Switch to light mode" : "Switch to dark mode"));
+      btn.addEventListener("click", () => theme.set(theme.effective() === "dark" ? "light" : "dark", btn));
+    }
+  }
+
   /* ---------- Confetti: square pixels, like the logo. ---------- */
   const confetti = (() => {
     const c = $("#confetti");
@@ -864,16 +916,8 @@
       });
     }
     const pressTheme = (t) => segs.forEach((s) => s.setAttribute("aria-pressed", String(s.dataset.t === t)));
-    pressTheme(store.get("yepdid.theme") ?? "system");
-    for (const s of segs) {
-      s.addEventListener("click", () => {
-        const t = s.dataset.t;
-        if (t === "system") delete document.documentElement.dataset.theme;
-        else document.documentElement.dataset.theme = t;
-        store.set("yepdid.theme", t === "system" ? null : t);
-        pressTheme(t);
-      });
-    }
+    theme.on((c) => pressTheme(c));
+    for (const s of segs) s.addEventListener("click", () => theme.set(s.dataset.t, s));
     const paint = (s) => {
       codeEl.innerHTML = `${[...s.slice(0, 4)].map((c) => `<span>${c}</span>`).join("")}<span class="dash">-</span>${[...s.slice(4)].map((c) => `<span>${c}</span>`).join("")}`;
     };
@@ -924,6 +968,7 @@
   function boot() {
     const y = $("[data-year]");
     if (y) y.textContent = String(new Date().getFullYear());
+    themeToggle();
     renderStores();
     hero();
     reveals();

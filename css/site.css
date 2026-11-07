@@ -129,7 +129,7 @@ button { font: inherit; color: inherit; }
 .hero { position: relative; padding: clamp(28px, 6vw, 72px) 0 clamp(40px, 8vw, 96px); isolation: isolate; }
 .drift { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 .drift i {
-  position: absolute; width: var(--s); height: var(--s); background: var(--c); opacity: 0.55;
+  position: absolute; width: var(--s); height: var(--s); background: var(--c); opacity: 0.5;
   animation: drift var(--d) linear infinite; animation-delay: var(--delay);
 }
 @keyframes drift {

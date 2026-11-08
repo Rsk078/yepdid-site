@@ -42,7 +42,6 @@
     <symbol id="i-gym" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829zM21.5 21.5l-1.4-1.4M3.9 3.9 2.5 2.5M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></symbol>
     <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0zM20 3v4M22 5h-4"/></symbol>
     <symbol id="i-calclock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5M16 2v4M8 2v4M3 10h5M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></symbol>
-    <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16M16 16h5v5"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1zM9 12l2 2 4-4"/></symbol>
     <symbol id="i-eyeoff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49M14.084 14.158a3 3 0 0 1-4.242-4.242M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143M2 2l20 20"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
@@ -253,27 +252,26 @@
         <span class="screen-name reveal"><i><svg><use href="#i-cal"/></svg></i>Schedule</span>
         <h2 class="reveal">When you're busy, it already knows.</h2>
         <p class="reveal">Add busy time once or every week, and see both of you side by side, with busy runs hatched like the pixels in our logo. A deadline can't land inside your busy time, and Yepdid points you to the next free slot.</p>
-        <p class="reveal">Connect Google Calendar and your busy times fill in by themselves. It <strong>shows when you're busy, never what you're doing</strong>: Yepdid only ever reads free and busy times, never event names.</p>
-        <p class="try reveal">Press sync <svg><use href="#i-squiggle"/></svg></p>
+        <p class="try reveal">Tap + Busy time <svg><use href="#i-squiggle"/></svg></p>
       </div>
       <div class="stage reveal d1">
         <div class="phone">
           <div class="screen" id="demo-sched">
             <div class="status-row"><span>9:41</span><span>●●●</span></div>
             <div class="head-row"><span class="round"><svg><use href="#i-back"/></svg></span><b style="font-size:14px" data-sday>Today</b><span class="round" style="transform:scaleX(-1)"><svg><use href="#i-back"/></svg></span></div>
-            <div class="gcal"><span class="g"></span><div><b>Google Calendar</b><span data-sync-label>Shows when you're busy, never what you're doing.</span></div><button class="round" data-sync aria-label="Sync now"><svg data-sync-icon><use href="#i-sync"/></svg></button></div>
             <div class="sched">
               <div class="hours"><span></span><span>2 pm</span><span>3 pm</span><span>4 pm</span><span>5 pm</span><span>6 pm</span><span>7 pm</span><span>8 pm</span></div>
               <div class="col"><div class="col-head"><i style="background:var(--ocean)"></i>Ben</div>
                 <div class="blk" data-blk style="--c:var(--ocean);top:16%;height:24%">🏋️ Gym</div>
-                <div class="blk" data-gblk style="--c:#c7d2fe;top:46%;height:22%">Busy</div>
+                <div class="blk" data-addblk style="--c:var(--ocean);top:46%;height:22%">🎸 Band</div>
               </div>
               <div class="col"><div class="col-head"><i style="background:var(--coral)"></i>Asha</div>
                 <div class="blk" data-blk style="--c:var(--coral);top:9%;height:58%">💼 Work</div>
               </div>
               <div class="dl" style="top:80%;left:30px"><span>🥛 Pick up milk 7:00 pm</span></div>
             </div>
-            <div class="tabbar" aria-hidden="true"><span class="add">+ Busy time</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span class="on"><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
+            <div class="toast" role="status" aria-live="polite" data-toast></div>
+            <div class="tabbar"><button type="button" class="add" data-addbusy>+ Busy time</button><span class="icons" aria-hidden="true"><span><svg><use href="#i-list"/></svg></span><span class="on"><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
           </div>
         </div>
       </div>
@@ -373,7 +371,7 @@
         <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Can I make it blue?</div></div></div></div>
         <span class="screen-name reveal"><i><svg><use href="#i-user"/></svg></i>You</span>
         <h2 class="reveal">Make it yours. (This page too.)</h2>
-        <p class="reveal">Your name and photo, your pair code, <strong>Light</strong> or <strong>Dark</strong>, and an <strong>App colour</strong>: green, blue, lilac or peach. Connect Google Calendar here, sign out, or delete your account for good.</p>
+        <p class="reveal">Your name and photo, your pair code, <strong>Light</strong> or <strong>Dark</strong>, and an <strong>App colour</strong>: green, blue, lilac or peach. Sign out here, or delete your account for good.</p>
         <p class="reveal">Go on, pick a colour or switch to dark. This whole website changes with it.</p>
         <p class="try reveal">Tap a colour <svg><use href="#i-squiggle"/></svg></p>
       </div>
@@ -422,9 +420,8 @@
       <h2 class="reveal">Polite with your data.</h2>
       <div class="grid">
         <div class="item reveal"><span class="glyph"><svg><use href="#i-shield"/></svg></span><b>No ads, no trackers</b><p>There's no advertising or analytics code in the app, and nothing about you is sold.</p></div>
-        <div class="item reveal d1"><span class="glyph"><svg><use href="#i-cal"/></svg></span><b>Busy, never what</b><p>Google Calendar shares only when you're busy. Event names never reach Yepdid.</p></div>
-        <div class="item reveal d2"><span class="glyph"><svg><use href="#i-eyeoff"/></svg></span><b>Private means private</b><p>Private tasks are yours alone, and surprise rewards stay hidden until they're earned.</p></div>
-        <div class="item reveal d3"><span class="glyph"><svg><use href="#i-trash"/></svg></span><b>Delete means delete</b><p>Delete your account in the app and your data goes right away. <a href="privacy.html">Read the privacy policy</a>.</p></div>
+        <div class="item reveal d1"><span class="glyph"><svg><use href="#i-eyeoff"/></svg></span><b>Private means private</b><p>Private tasks are yours alone, and surprise rewards stay hidden until they're earned.</p></div>
+        <div class="item reveal d2"><span class="glyph"><svg><use href="#i-trash"/></svg></span><b>Delete means delete</b><p>Delete your account in the app and your data goes right away. <a href="privacy.html">Read the privacy policy</a>.</p></div>
       </div>
     </div>
   </section>

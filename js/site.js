@@ -718,26 +718,18 @@
     const root = $("#demo-sched");
     if (!root) return;
     $("[data-sday]", root).textContent = `Today, ${dayLabel(today)}`;
-    const label = $("[data-sync-label]", root);
-    const icon = $("[data-sync-icon]", root);
-    const gblk = $("[data-gblk]", root);
-    async function sync() {
-      gblk.classList.remove("in");
-      icon.classList.add("spin");
-      label.textContent = "Syncing…";
-      await wait(1300);
-      icon.classList.remove("spin");
-      gblk.classList.add("in");
-      label.textContent = "Synced just now. Busy only, no event names.";
-    }
-    $("[data-sync]", root).addEventListener("click", sync);
+    const toast = toaster(root);
+    const band = $("[data-addblk]", root);
+    $("[data-addbusy]", root).addEventListener("click", () => {
+      const adding = !band.classList.contains("in");
+      band.classList.toggle("in", adding);
+      if (adding) toast("Busy time added for Ben. Deadlines skip it.");
+    });
     onSeen(root, async () => {
       for (const b of $$("[data-blk]", root)) {
         b.classList.add("in");
         await wait(260);
       }
-      await wait(500);
-      sync();
     });
   }
 

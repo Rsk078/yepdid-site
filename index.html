@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Yepdid: shared tasks for two</title>
-  <meta name="description" content="Yepdid is a to-do app for you and your person. One of you ticks a task, the other confirms it, and Yepdid keeps the score: deadlines, busy times, shared costs and little rewards.">
+  <meta name="description" content="Yepdid is a to-do app for you and your person. One of you ticks a task, the other confirms it, and Yepdid keeps the score: deadlines, busy times and shared costs.">
   <meta name="theme-color" content="#F4FBF2">
   <link rel="icon" href="img/favicon-64.png" type="image/png">
   <link rel="icon" href="img/icon.svg" type="image/svg+xml">
@@ -24,7 +24,6 @@
     <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/></symbol>
     <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></symbol>
     <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
-    <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
     <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
     <symbol id="i-bellplus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0M15 8h6M18 5v6M20.002 14.464a9 9 0 0 0 .738.863A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 8.75-5.332"/></symbol>
@@ -108,7 +107,7 @@
 
       <div class="hero-copy">
         <h1>Two people, one list, and a <span class="tick">yep</span> when it's done.</h1>
-        <p class="lede">Yepdid is a to-do app for you and your person. One of you ticks a task, the other confirms it, and Yepdid keeps the score: deadlines that respect busy time, costs you split, and little rewards you owe each other.</p>
+        <p class="lede">Yepdid is a to-do app for you and your person. One of you ticks a task, the other confirms it, and Yepdid keeps the score: deadlines that respect busy time, checklists you tick off together, and costs you split.</p>
       </div>
       <div class="stores" data-stores></div>
       <div class="scroll-cue" aria-hidden="true"><span>↓</span></div>
@@ -117,8 +116,8 @@
 
   <div class="ticker" aria-hidden="true">
     <div>
-      <span>Mark done</span><span>Confirm?</span><span>Poked you</span><span>Half each</span><span>Surprise!</span><span>Not yet</span><span>Pizza night</span><span>Busy then</span><span>All square</span><span>Yepdid!</span>
-      <span>Mark done</span><span>Confirm?</span><span>Poked you</span><span>Half each</span><span>Surprise!</span><span>Not yet</span><span>Pizza night</span><span>Busy then</span><span>All square</span><span>Yepdid!</span>
+      <span>Mark done</span><span>Confirm?</span><span>Poked you</span><span>Half each</span><span>Private</span><span>Not yet</span><span>Next free slot</span><span>Busy then</span><span>All square</span><span>Yepdid!</span>
+      <span>Mark done</span><span>Confirm?</span><span>Poked you</span><span>Half each</span><span>Private</span><span>Not yet</span><span>Next free slot</span><span>Busy then</span><span>All square</span><span>Yepdid!</span>
     </div>
   </div>
 
@@ -197,7 +196,7 @@
               <button class="chip" aria-pressed="false" data-f="private">Private</button>
             </div>
             <div class="list" data-board></div>
-            <div class="tabbar" aria-hidden="true"><span class="add">+ New task</span><span class="icons"><span class="on"><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
+            <div class="tabbar" aria-hidden="true"><span class="add">+ New task</span><span class="icons"><span class="on"><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span></span></div>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
           </div>
         </div>
@@ -213,7 +212,7 @@
         <span class="screen-name reveal"><i><svg><use href="#i-calclock"/></svg></i>New task</span>
         <h2 class="reveal">A new task in a few taps.</h2>
         <p class="reveal">Write it, choose who it's for (<strong>Me</strong>, your partner or <strong>Either</strong>) and when. Tap a day and a time and it's set, with the full date right on the Due chip. Quick picks cover <strong>Today</strong>, <strong>Tomorrow</strong> and <strong>This weekend</strong>.</p>
-        <p class="reveal">Busy time is off limits: try to put a deadline there and it shakes its head. Add a checklist, a reward, keep the reward a <strong>Surprise</strong>, or make the whole task <strong>Private</strong> so only you see it.</p>
+        <p class="reveal">Busy time is off limits: try to put a deadline there and it shakes its head. Add a checklist, attach a photo or PDF, or make the whole task <strong>Private</strong> so only you see it.</p>
         <p class="try reveal">Tap a time, then the busy one <svg><use href="#i-squiggle"/></svg></p>
       </div>
       <div class="stage reveal d1">
@@ -234,8 +233,7 @@
               <div class="slots" data-slots></div>
               <div class="refusal" data-refusal aria-live="polite"></div>
             </div>
-            <div class="row-switch"><div>Reward<small data-rewardname>🍕 Pizza night</small></div><div class="emojis" data-emojis style="flex:none"></div></div>
-            <div class="row-switch"><span class="ico"><svg><use href="#i-lock"/></svg></span><div>Surprise<small>They only see there's a reward</small></div><button class="switch" role="switch" aria-checked="false" data-switch aria-label="Surprise"></button></div>
+            <div class="row-switch"><span class="ico"><svg><use href="#i-lock"/></svg></span><div>Private<small>Only you can see this</small></div><button class="switch" role="switch" aria-checked="false" data-switch aria-label="Private"></button></div>
             <button class="btn" data-add>Add task</button>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
           </div>
@@ -271,7 +269,7 @@
               <div class="dl" style="top:80%;left:30px"><span>🥛 Pick up milk 7:00 pm</span></div>
             </div>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
-            <div class="tabbar"><button type="button" class="add" data-addbusy>+ Busy time</button><span class="icons" aria-hidden="true"><span><svg><use href="#i-list"/></svg></span><span class="on"><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
+            <div class="tabbar"><button type="button" class="add" data-addbusy>+ Busy time</button><span class="icons" aria-hidden="true"><span><svg><use href="#i-list"/></svg></span><span class="on"><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span></span></div>
           </div>
         </div>
       </div>
@@ -302,7 +300,7 @@
             </div>
             <div class="chips"><button class="chip on" data-addexp>+ Add expense</button><button class="chip" data-settle>Settle up</button></div>
             <div class="list" data-mlines></div>
-            <div class="tabbar" aria-hidden="true"><span class="add">+ Expense</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span class="on"><svg><use href="#i-wallet"/></svg></span><span><svg><use href="#i-gift"/></svg></span></span></div>
+            <div class="tabbar" aria-hidden="true"><span class="add">+ Expense</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span class="on"><svg><use href="#i-wallet"/></svg></span></span></div>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
           </div>
         </div>
@@ -310,43 +308,14 @@
     </div>
   </section>
 
-  <!-- 6. Rewards. -->
-  <section class="chapter flip" id="rewards" data-dock="4">
-    <div class="wrap">
-      <div class="copy">
-        <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Dishes all week and I owe you something nice…</div></div></div></div>
-        <span class="screen-name reveal"><i><svg><use href="#i-gift"/></svg></i>Rewards</span>
-        <h2 class="reveal">Little treats you owe each other.</h2>
-        <p class="reveal">Put a reward on a task, like 🍣 dinner out or 🍕 pizza night. It's <strong>Offered</strong> while the task is open and <strong>Earned 🎉</strong> once you've both ticked it. Then whoever owes it marks it <strong>Delivered</strong>. Miss the deadline and the reward is forfeited.</p>
-        <p class="reveal">Or keep it a <strong>Surprise</strong>: your partner sees that there's a reward, but not what it is, until you've both checked.</p>
-        <p class="try reveal">Open the present <svg><use href="#i-squiggle"/></svg></p>
-      </div>
-      <div class="stage reveal d1">
-        <div class="phone">
-          <div class="screen" id="demo-rewards">
-            <div class="status-row"><span>9:41</span><span>●●●</span></div>
-            <b style="font-size:18px;font-weight:800">Rewards</b>
-            <div class="owed"><div>Owed to you<b data-owedyou>2</b></div><div>You owe<b>1</b></div></div>
-            <div class="states" data-states><span>Proposed</span><span>Offered</span><span>Pending confirm</span><span>Earned 🎉</span><span>Delivered</span></div>
-            <div class="gift-area">
-              <button class="gift" data-gift aria-label="Open the surprise"><span class="lid"><span class="bow">🎀</span></span><span class="prize">🍕</span><span class="box"></span></button>
-            </div>
-            <div class="reveal-card" data-revealcard><h5>Surprise!</h5><p>Asha owes you this for “Do the dishes”</p><div style="font-size:30px">🍕</div><b>Pizza night</b><button class="btn" style="margin-top:8px" data-nice>Nice!</button></div>
-            <div class="tabbar" aria-hidden="true"><span class="add">+ New task</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span><span class="on"><svg><use href="#i-gift"/></svg></span></span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- 7. Activity and pokes. -->
-  <section class="chapter" id="activity" data-dock="4">
+  <section class="chapter flip" id="activity" data-dock="3">
     <div class="wrap">
       <div class="copy">
-        <div class="say reveal"><span class="face ben" aria-hidden="true">B</span><div class="px-bubble"><div class="out"><div class="in">Did you see? I did the plants.</div></div></div></div>
+        <div class="say right reveal"><span class="face ben" aria-hidden="true">B</span><div class="px-bubble"><div class="out"><div class="in">Did you see? I did the plants.</div></div></div></div>
         <span class="screen-name reveal"><i><svg><use href="#i-bell"/></svg></i>Activity</span>
         <h2 class="reveal">Everything that happened, in one feed.</h2>
-        <p class="reveal">The bell keeps a running story of your board: who created, ticked, confirmed or said not yet, who offered a reward, who added a cost, and when you paired up.</p>
+        <p class="reveal">The bell keeps a running story of your board: who created, ticked, confirmed or said not yet, who added a cost, and when you paired up.</p>
         <p class="reveal">Need a nudge? A poke lands as a notification on their phone, like “👉 Ben poked you”. One poke per task a minute, so nobody gets spammed.</p>
         <p class="try reveal">Poke Asha <svg><use href="#i-squiggle"/></svg></p>
       </div>
@@ -365,10 +334,10 @@
   </section>
 
   <!-- 8. You. -->
-  <section class="chapter flip" id="you" data-dock="5">
+  <section class="chapter" id="you" data-dock="4">
     <div class="wrap">
       <div class="copy">
-        <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Can I make it blue?</div></div></div></div>
+        <div class="say reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Can I make it blue?</div></div></div></div>
         <span class="screen-name reveal"><i><svg><use href="#i-user"/></svg></i>You</span>
         <h2 class="reveal">Make it yours. (This page too.)</h2>
         <p class="reveal">Your name and photo, your pair code, <strong>Light</strong> or <strong>Dark</strong>, and an <strong>App colour</strong>: green, blue, lilac or peach. Sign out here, or delete your account for good.</p>
@@ -399,7 +368,7 @@
   </section>
 
   <!-- 9. Pairing, or solo. -->
-  <section class="chapter" id="pair" data-dock="5">
+  <section class="chapter flip" id="pair" data-dock="4">
     <div class="wrap">
       <div class="copy">
         <span class="screen-name reveal"><i><svg><use href="#i-user"/></svg></i>Getting started</span>
@@ -409,7 +378,7 @@
       </div>
       <div class="pair-stage reveal d1">
         <div class="pair-card" data-solo><div class="faces"><span class="face asha">A</span></div><h3>Just me</h3><p>Your tasks, checklists and reminders. Add a partner any time.</p></div>
-        <div class="pair-card" data-duo><div class="faces"><span class="face asha">A</span><span class="face ben">B</span></div><h3>Me and my partner</h3><p>Share tasks, checks, rewards and costs with your person.</p></div>
+        <div class="pair-card" data-duo><div class="faces"><span class="face asha">A</span><span class="face ben">B</span></div><h3>Me and my partner</h3><p>Share tasks, checks and costs with your person.</p></div>
         <div class="pair-code"><span class="hand" style="font-size:26px;color:var(--pixel)">Share this with your person!</span><div class="boxes" data-boxes></div><span data-paired style="font-weight:700;opacity:0;transition:opacity .4s">Paired 🎉</span></div>
       </div>
     </div>
@@ -420,13 +389,13 @@
       <h2 class="reveal">Polite with your data.</h2>
       <div class="grid">
         <div class="item reveal"><span class="glyph"><svg><use href="#i-shield"/></svg></span><b>No ads, no trackers</b><p>There's no advertising or analytics code in the app, and nothing about you is sold.</p></div>
-        <div class="item reveal d1"><span class="glyph"><svg><use href="#i-eyeoff"/></svg></span><b>Private means private</b><p>Private tasks are yours alone, and surprise rewards stay hidden until they're earned.</p></div>
+        <div class="item reveal d1"><span class="glyph"><svg><use href="#i-eyeoff"/></svg></span><b>Private means private</b><p>Private tasks are yours alone, with their checklists, files and history.</p></div>
         <div class="item reveal d2"><span class="glyph"><svg><use href="#i-trash"/></svg></span><b>Delete means delete</b><p>Delete your account in the app and your data goes right away. <a href="privacy.html">Read the privacy policy</a>.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="get" id="get" data-dock="6">
+  <section class="get" id="get" data-dock="5">
     <div class="rain" aria-hidden="true"></div>
     <div class="wrap">
       <svg class="mini-bubble" viewBox="156 150 345 362" aria-hidden="true"><use href="#logo-mark"/></svg>
@@ -455,7 +424,6 @@
     <a href="#ticks"><svg><use href="#i-check"/></svg><span class="tip">Two ticks</span><span class="sr-only">Two ticks</span></a>
     <a href="#schedule"><svg><use href="#i-cal"/></svg><span class="tip">Schedule</span><span class="sr-only">Schedule</span></a>
     <a href="#money"><svg><use href="#i-wallet"/></svg><span class="tip">Money</span><span class="sr-only">Money</span></a>
-    <a href="#rewards"><svg><use href="#i-gift"/></svg><span class="tip">Rewards</span><span class="sr-only">Rewards</span></a>
     <a href="#you"><svg><use href="#i-user"/></svg><span class="tip">You</span><span class="sr-only">You</span></a>
   </div>
   <a class="get-btn" href="#get">Get the app</a>

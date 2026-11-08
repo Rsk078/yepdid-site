@@ -611,16 +611,7 @@
     const pdays = $("[data-pdays]", root);
     const slots = $("[data-slots]", root);
     const refusal = $("[data-refusal]", root);
-    const emojis = $("[data-emojis]", root);
-    const rewardName = $("[data-rewardname]", root);
     const sw = $("[data-switch]", root);
-    const REWARDS = [
-      ["🎁", "A treat"],
-      ["🍣", "Dinner out"],
-      ["🍕", "Pizza night"],
-      ["☕", "Coffee date"],
-      ["🎬", "Movie night"],
-    ];
     let forWho = "Asha";
     let day = 0;
     let time = "9:00 pm";
@@ -687,14 +678,6 @@
         renderSlots();
       }),
     );
-    emojis.innerHTML = REWARDS.map(([e, n], i) => `<button aria-pressed="${i === 2}" aria-label="${n}" data-i="${i}">${e}</button>`).join("");
-    emojis.addEventListener("click", (e) => {
-      const b = e.target.closest("button");
-      if (!b) return;
-      const [em, name] = REWARDS[Number(b.dataset.i)];
-      $$("button", emojis).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-      rewardName.textContent = `${em} ${name}`;
-    });
     sw.addEventListener("click", () => sw.setAttribute("aria-checked", String(sw.getAttribute("aria-checked") !== "true")));
     $("[data-add]", root).addEventListener("click", (e) => {
       confetti.at(e.currentTarget, 40, 0.7);
@@ -803,42 +786,6 @@
     onSeen(root, () => setTimeout(render, 300));
   }
 
-  /* ---------- Demo: Rewards ---------- */
-  function rewardsDemo() {
-    const root = $("#demo-rewards");
-    if (!root) return;
-    const gift = $("[data-gift]", root);
-    const card = $("[data-revealcard]", root);
-    const states = $$("[data-states] span", root);
-    const owed = $("[data-owedyou]", root);
-    let i = 0;
-    let timer = 0;
-    const stepStates = () => {
-      states.forEach((s, k) => s.classList.toggle("on", k === i));
-      i = (i + 1) % states.length;
-    };
-    onSeen(root, () => {
-      stepStates();
-      if (!reduce) timer = setInterval(stepStates, 1400);
-    });
-    gift.addEventListener("click", () => {
-      if (gift.classList.contains("open")) return;
-      gift.classList.add("open");
-      confetti.at(gift, 90, 1.2);
-      clearInterval(timer);
-      states.forEach((s, k) => s.classList.toggle("on", k === 3));
-      owed.textContent = "3";
-      setTimeout(() => card.classList.add("show"), reduce ? 0 : 650);
-    });
-    $("[data-nice]", root).addEventListener("click", () => {
-      card.classList.remove("show");
-      setTimeout(() => gift.classList.remove("open"), 300);
-      owed.textContent = "2";
-      i = 0;
-      if (!reduce) timer = setInterval(stepStates, 1400);
-    });
-  }
-
   /* ---------- Demo: Activity and pokes ---------- */
   function feedDemo() {
     const root = $("#demo-feed");
@@ -848,11 +795,11 @@
     const btn = $("[data-pokeasha]", root);
     const items = [
       ["b", "Ben created “Water the plants”"],
-      ["a", "Asha offered 🍣 Dinner out"],
+      ["a", "Asha added busy time · Yoga"],
       ["b", "Ben marked done “Water the plants”"],
       ["a", "Asha confirmed “Water the plants”"],
       ["b", "Ben added Groceries ₹1,200"],
-      ["a", "Surprise revealed: 🍕 Pizza night"],
+      ["a", "Asha added Electricity bill ₹2,340"],
     ];
     let n = 0;
     let lastPoke = 0;
@@ -970,7 +917,6 @@
     newDemo();
     schedDemo();
     moneyDemo();
-    rewardsDemo();
     feedDemo();
     youDemo();
     pairDemo();

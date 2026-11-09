@@ -542,29 +542,6 @@ button { font: inherit; color: inherit; }
 .mline div small { display: block; font-weight: 400; color: var(--scr-muted); font-size: 10px; }
 .mline b { font-size: 12px; }
 
-/* Rewards mock. */
-.owed { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.owed div { background: var(--scr-card); border-radius: 18px; padding: 8px 10px; font-size: 10px; color: var(--scr-muted); }
-.owed b { display: block; font-size: 16px; color: var(--scr-text); }
-.gift-area { flex: 1; display: grid; place-items: center; position: relative; }
-.gift { position: relative; width: 120px; height: 110px; cursor: pointer; animation: jiggle 2.4s ease-in-out infinite; }
-@keyframes jiggle { 0%, 70%, 100% { transform: none; } 75% { transform: rotate(-6deg); } 80% { transform: rotate(6deg); } 85% { transform: rotate(-4deg); } 90% { transform: rotate(3deg); } }
-.gift .box { position: absolute; bottom: 0; left: 10px; right: 10px; height: 70px; background: var(--pink); border-radius: 8px; }
-.gift .box::after, .gift .lid::after { content: ""; position: absolute; left: 50%; translate: -50% 0; width: 16px; top: 0; bottom: 0; background: var(--yellow); }
-.gift .lid { position: absolute; left: 2px; right: 2px; top: 22px; height: 24px; background: #f05aaa; border-radius: 8px; transition: transform 0.7s cubic-bezier(.2,1.4,.4,1); z-index: 2; }
-.gift .bow { position: absolute; left: 50%; top: -14px; translate: -50% 0; font-size: 26px; }
-.gift.open { animation: none; }
-.gift.open .lid { transform: translate(40px, -70px) rotate(35deg); }
-.gift .prize { position: absolute; left: 50%; top: 30px; translate: -50% 0; font-size: 40px; opacity: 0; transition: all 0.6s 0.2s cubic-bezier(.2,1.6,.4,1); z-index: 1; }
-.gift.open .prize { opacity: 1; top: -30px; }
-.reveal-card { position: absolute; inset: auto 6px 70px; background: var(--scr-card); border-radius: 22px; padding: 12px; text-align: center; box-shadow: 0 16px 30px -12px rgba(0,0,0,.35); opacity: 0; transform: translateY(20px) scale(0.9); transition: all 0.45s cubic-bezier(.2,1.5,.4,1); pointer-events: none; z-index: 4; }
-.reveal-card.show { opacity: 1; transform: none; pointer-events: auto; }
-.reveal-card h5 { margin: 0; font-size: 20px; font-weight: 800; }
-.reveal-card p { margin: 2px 0 8px; font-size: 11px; color: var(--scr-muted); }
-.states { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
-.states span { font-size: 10px; font-weight: 600; padding: 4px 9px; border-radius: 999px; background: var(--scr-card); color: var(--scr-muted); transition: all 0.3s; }
-.states span.on { background: var(--scr-text); color: var(--scr-bg); transform: scale(1.08); }
-
 /* Activity mock. */
 .feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; align-content: start; }
 .feed li { display: flex; gap: 8px; align-items: center; background: var(--scr-card); border-radius: 18px; padding: 8px 10px; font-size: 11px; animation: slide-in 0.5s cubic-bezier(.2,1.4,.4,1); }

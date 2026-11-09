@@ -412,17 +412,13 @@
         step = 0.5;
         ring.classList.add("checked");
         confetti.at(ring, 26, 0.6);
-        setStatus("wait", "◷ Waiting");
-        due.textContent = "Done, waiting for Ben";
+        setStatus("done", "✓ Done");
+        due.textContent = "Done by you";
         line("a", "Asha marked done");
-        const w = line("wait", "Waiting for Ben", "");
-        main.textContent = "Sent to Ben…";
+        main.textContent = "Done";
         await wait(1100);
         flipTo("Ben");
-        setStatus("wait", "◷ Confirm?");
-        due.textContent = "Done, awaiting your confirm";
-        w.remove();
-        line("wait", "Waiting for you", "");
+        due.textContent = "Done by Asha";
         main.textContent = "✓ Confirm";
         notYet.hidden = false;
         step = 1;
@@ -478,7 +474,7 @@
     const left = $("[data-left]", root);
     const later = addDays(today, 3);
     const tasks = [
-      { id: 1, t: "Book the cab", who: "b", state: "confirm", day: 0, sec: "Waiting for you", icon: "i-phone", due: ["6:00 pm"] },
+      { id: 1, t: "Book the cab", who: "b", state: "done", day: 0, sec: "Done", icon: "i-phone", due: ["6:00 pm"] },
       { id: 2, t: "Pick up milk", who: "a", state: "new", day: 0, sec: "Today", icon: "i-cart", due: ["7:00 pm"] },
       { id: 3, t: "Walk Bruno", who: "b", state: "open", day: 0, sec: "Today", icon: "i-paw", due: ["8:00 pm"] },
       { id: 4, t: "Call mom", who: "a", priv: true, state: "open", day: 0, sec: "Today", icon: "i-phone", due: ["8:30 pm"] },
@@ -486,14 +482,12 @@
       { id: 6, t: "Gym", who: "a", state: "open", day: 1, sec: "Tomorrow", icon: "i-gym", due: ["Tomorrow", "7:00 am"] },
       { id: 7, t: "Water the plants", who: "b", state: "open", day: 3, sec: "This week", icon: "i-sprout", due: [WD[later.getDay()], "9:00 pm"] },
     ];
-    const ORDER = ["Waiting for you", "Overdue", "Today", "Tomorrow", "This week", "Later"];
+    const ORDER = ["Overdue", "Today", "Tomorrow", "This week", "Later", "Done"];
     let filter = "all";
     let pickDay = null;
     const tagFor = (t) =>
       ({
-        confirm: ['wait', "◷ Confirm?"],
         new: ["new", "✱ New"],
-        waiting: ["wait", "◷ Waiting"],
         done: ["done", "✓ Done"],
       })[t.state] ?? null;
     const visible = (t) => {
@@ -505,7 +499,7 @@
     };
     function ringUpdate() {
       const todays = tasks.filter((t) => t.day === 0);
-      const done = todays.filter((t) => t.state === "waiting" || t.state === "done" || t.state === "confirm").length;
+      const done = todays.filter((t) => t.state === "done").length;
       const leftN = todays.length - done;
       arc.style.strokeDashoffset = String(113 * (1 - done / todays.length));
       left.textContent = leftN === 0 ? "All done today!" : leftN === 1 ? "1 thing left today" : `${leftN} things left today`;
@@ -532,20 +526,12 @@
         .join("");
     }
     function act(t, wrap) {
-      if (t.state === "done" || t.state === "waiting") return toast("Already ticked");
-      if (t.who === "b" && t.state !== "confirm") return toast("That one's Ben's to tick");
-      if (t.state === "confirm") {
-        t.state = "done";
-        confetti.at(wrap, 70, 1);
-        toast("Confirmed! 🎉");
-      } else if (t.priv) {
-        t.state = "done";
-        confetti.at(wrap, 30, 0.6);
-      } else {
-        t.state = "waiting";
-        confetti.at(wrap, 30, 0.6);
-        toast("Waiting for Ben to confirm");
-      }
+      if (t.state === "done") return toast("Already ticked");
+      if (t.who === "b") return toast("That one's Ben's to tick");
+      t.state = "done";
+      t.sec = "Done";
+      confetti.at(wrap, 30, 0.6);
+      if (!t.priv) toast("Done! Ben can confirm it");
       render();
       ringUpdate();
     }

@@ -40,7 +40,7 @@
 <main class="doc">
   <div class="wrap">
     <h1>Privacy policy</h1>
-    <p class="meta">Effective 9 November 2026. Questions: <a href="mailto:hello@yepdid.com">hello@yepdid.com</a>.</p>
+    <p class="meta">Effective 12 November 2026. Questions: <a href="mailto:hello@yepdid.com">hello@yepdid.com</a>.</p>
 
     <div class="short">
       <h2 style="margin-top:0">The short version</h2>
@@ -65,13 +65,13 @@
     <h2 id="collect">What we collect</h2>
     <h3>Your account</h3>
     <ul>
-      <li><strong>Email address</strong>, to sign you in with a one-time code. If you sign in with Google, we receive your Google account's email and name from Google.</li>
+      <li><strong>Email address</strong>, to sign you in with a one-time code. If you sign in with Google, we receive your Google account's email and name from Google. If you sign in with Apple on an iPhone, we receive the name and email you choose to share with Apple; if you hide your email, Apple gives us a private relay address that forwards to you.</li>
       <li><strong>Profile</strong>: the name you choose, an optional profile photo you pick from your photo library, your colour, your time zone (so deadlines show at the right time), and your personal pairing code.</li>
     </ul>
     <h3>What you add</h3>
     <ul>
       <li><strong>Tasks</strong>: titles, notes, checklists, deadlines, who a task is for, whether it's private, and who ticked or confirmed it and when.</li>
-      <li><strong>Photos and PDFs</strong> you attach to a task, from your photo library, your camera, your files, or another app's share button. Photos are resized and saved as JPEG before upload. They're stored privately: only people who can see the task can open them, through links that expire after an hour.</li>
+      <li><strong>Photos and PDFs</strong> you attach to a task, from your photo library, your camera, your files, or another app's share button. Photos are made smaller before they're saved. They're stored privately: only people who can see the task can open them.</li>
       <li><strong>Text or links</strong> you share to Yepdid from another app. They become a new task's title, notes or checklist, and are kept like anything else you type into a task.</li>
       <li><strong>Costs</strong> you record in Money: what it was for, the amount, who paid and how it splits. Yepdid only keeps a tally between the two of you. It never handles payments, cards or bank details.</li>
       <li><strong>Busy times</strong> you add.</li>
@@ -80,18 +80,18 @@
     <h3>Pairing and invites</h3>
     <ul>
       <li>Pair requests between two accounts, and attempts to enter a code (to stop people guessing codes).</li>
-      <li>If you invite someone by email: their email address, your name, and a 6-digit code that expires after 48 hours. We store only a scrambled (hashed) version of the code.</li>
+      <li>If you invite someone by email: their email address, your name, and a 6-digit code that expires after 48 hours. We don't keep the code itself, only a scrambled copy that can check it.</li>
     </ul>
     <h3>Your device</h3>
     <ul>
-      <li>If you allow notifications, a <strong>push token</strong> and whether your phone runs iOS or Android, so your partner's pokes, new tasks and cost updates reach you.</li>
+      <li>If you allow notifications, a <strong>notification address</strong> for your phone, so your partner's pokes, new tasks and cost updates reach you.</li>
       <li><strong>Reminders</strong> you set are scheduled on your phone only. They are not sent to us.</li>
-      <li>Your appearance and colour choices, and some cached data so the app opens quickly, are kept on your phone. Signing out clears the cached data.</li>
-      <li>If you use Yepdid in a web browser at app.yepdid.com, the browser keeps you signed in using its own storage on your computer, along with a copy of your tasks so the app opens quickly, and signing out clears it. The web sign-in screen, and the Google Calendar card when it is shown, load Google's sign-in script from Google, which follows Google's privacy policy.</li>
+      <li>Your appearance and colour choices, and a copy of your tasks so the app opens quickly, are kept on your phone. Signing out clears that copy.</li>
+      <li>If you use Yepdid in a web browser at app.yepdid.com, your browser keeps you signed in and keeps a copy of your tasks so the app opens quickly. Signing out clears it. Signing in with Google on the web, and connecting Google Calendar, use Google's own sign-in, which follows Google's privacy policy.</li>
     </ul>
     <h3>What we don't collect</h3>
     <p>No location (only your time zone), no contacts or address book, no microphone, no advertising identifiers, and no tracking across other apps or websites. The camera opens only when you choose to take a photo for a task, and only that photo is kept. Yepdid has no ads.</p>
-    <div class="callout"><p style="margin:0"><strong>Crash reports.</strong> Yepdid doesn't collect crash reports today. If we turn them on, we'll use Sentry, set up so reports don't include your name, email or IP address, and we'll update this page first.</p></div>
+    <div class="callout"><p style="margin:0"><strong>Crash reports.</strong> Yepdid doesn't collect crash reports today. If we turn them on, they won't include your name, email or IP address, and we'll update this page first.</p></div>
 
     <h2 id="use">How we use it</h2>
     <ul>
@@ -117,10 +117,11 @@
       <table>
         <thead><tr><th>Service</th><th>What it does for Yepdid</th><th>What it handles</th></tr></thead>
         <tbody>
-          <tr><td>Supabase</td><td>Our database, sign-in, file storage and server functions, hosted in the European Union (Paris, France)</td><td>Everything listed in “What we collect”</td></tr>
+          <tr><td>Supabase</td><td>Stores your account and everything you add, and signs you in. Based in the European Union.</td><td>Everything listed in “What we collect”</td></tr>
           <tr><td>Resend</td><td>Sends our emails</td><td>Your email address and the code or invite in the email</td></tr>
-          <tr><td>Expo, Apple and Google push services</td><td>Deliver push notifications to your phone</td><td>Your push token and the notification's text, such as your partner's name, a task title or an amount</td></tr>
+          <tr><td>Expo, Apple and Google</td><td>Deliver notifications to your phone</td><td>Your phone's notification address and the notification's text, such as your partner's name, a task title or an amount</td></tr>
           <tr><td>Google</td><td>Sign in with Google, if you choose it</td><td>Your Google sign-in: your email address and name</td></tr>
+          <tr><td>Apple</td><td>Sign in with Apple, if you choose it</td><td>Your Apple sign-in: the name and email (or private relay address) you share, and a record we keep only to end the link if you delete your account</td></tr>
         </tbody>
       </table>
     </div>
@@ -128,20 +129,20 @@
 
     <h2 id="security">Keeping it safe</h2>
     <ul>
-      <li>All traffic between the app and our servers is encrypted.</li>
-      <li>Database rules mean only you and your partner can read your shared space, and only you can read your private tasks.</li>
+      <li>Everything sent between the app and Yepdid is encrypted.</li>
+      <li>Only you and your partner can see your shared board, and only you can see your private tasks.</li>
     </ul>
 
     <h2 id="delete">Deleting your account</h2>
     <p>In the app, open <strong>You</strong>, then <strong>Account</strong>, and tap <strong>Delete account</strong>. Deletion happens straight away and can't be undone:</p>
     <ul>
-      <li>Your sign-in account and email are deleted, along with your Google sign-in link if you used one. Google may still list Yepdid among your connected apps; you can remove it at <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>.</li>
-      <li>Your profile photo and push tokens are deleted, and any reminders on your phone are cancelled.</li>
+      <li>Your sign-in account and email are deleted, along with your Google sign-in link if you used one. Google may still list Yepdid among your connected apps; you can remove it at <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>. If you signed in with Apple, we also ask Apple to end Yepdid's link to your Apple ID.</li>
+      <li>Your profile photo and your phone's notification address are deleted, and any reminders on your phone are cancelled.</li>
       <li>Your boards are deleted: tasks, checklists, photos and PDFs, checks, costs, busy times and activity, including the shared board with your partner. If you're paired, <strong>your partner loses the shared board too</strong>.</li>
       <li>We keep a nameless placeholder for your profile (no name, photo, colour or email), which can't be linked back to you.</li>
     </ul>
     <p>Can't get into the app? Email <a href="mailto:hello@yepdid.com?subject=Delete%20my%20Yepdid%20account">hello@yepdid.com</a> from the address you sign in with, and we'll delete your account for you within 30 days.</p>
-    <p>We keep your data for as long as you have an account. We don't keep backups of deleted accounts beyond our hosting provider's routine backups, which expire on their own.</p>
+    <p>We keep your data for as long as you have an account. Deleted data can stay in our provider's routine backups for a short time, until they expire on their own.</p>
 
     <h2 id="rights">Your choices and rights</h2>
     <ul>

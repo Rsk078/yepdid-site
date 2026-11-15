@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.yepdid.app",
+      "sha256_cert_fingerprints": [
+        "CD:D0:A3:7F:5E:D9:88:9F:A7:9D:C9:CF:5D:A8:C9:1A:88:AD:CF:BB:CD:CC:E5:B2:E7:0E:86:C8:71:B0:8B:84"
+      ]
+    }
+  }
+]

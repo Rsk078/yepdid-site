@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["PS9WY6S87R.com.yepdid.app"],
+        "components": [
+          { "/": "/join", "comment": "Invite links from the invite email" },
+          { "/": "/join/*" }
+        ]
+      }
+    ]
+  }
+}

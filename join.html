@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <title>Join on Yepdid</title>
+  <meta name="theme-color" content="#F4FBF2">
+  <link rel="icon" href="/img/favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <!--
+    An invite link (yepdid.com/join?t=…) lands here only when the Yepdid app isn't there to open it
+    (not installed, or the link was opened in a browser). Hand it to the web app, which joins.
+  -->
+  <script>location.replace("https://app.yepdid.com/join" + location.search);</script>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #F4FBF2; color: #060E28;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    main { max-width: 420px; padding: 32px 24px; text-align: center; }
+    img { border-radius: 16px; }
+    a { display: inline-block; margin-top: 16px; padding: 14px 28px; border-radius: 999px; background: #060E28;
+      color: #FFFFFF; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="/img/apple-touch-icon.png" width="64" height="64" alt="Yepdid">
+    <p>Opening your invite…</p>
+    <noscript><p>Turn on JavaScript, or open Yepdid and enter the code from the email.</p></noscript>
+    <a id="open" href="https://app.yepdid.com/join">Open Yepdid</a>
+  </main>
+  <script>document.getElementById("open").href = "https://app.yepdid.com/join" + location.search;</script>
+</body>
+</html>

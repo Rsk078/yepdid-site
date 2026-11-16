@@ -5,7 +5,9 @@
       "namespace": "android_app",
       "package_name": "com.yepdid.app",
       "sha256_cert_fingerprints": [
-        "CD:D0:A3:7F:5E:D9:88:9F:A7:9D:C9:CF:5D:A8:C9:1A:88:AD:CF:BB:CD:CC:E5:B2:E7:0E:86:C8:71:B0:8B:84"
+        "CD:D0:A3:7F:5E:D9:88:9F:A7:9D:C9:CF:5D:A8:C9:1A:88:AD:CF:BB:CD:CC:E5:B2:E7:0E:86:C8:71:B0:8B:84",
+        "9C:8C:E6:51:22:5B:5D:6B:25:3B:5F:0B:E3:2F:44:5D:2F:3B:13:50:04:C7:8F:2F:B3:4B:B9:8E:91:52:F8:84",
+        "80:0D:93:BF:53:A9:79:7F:88:27:AC:F0:CE:5A:2F:CA:4E:A2:23:F5:E1:D9:36:98:65:CE:6F:9B:95:B4:5B:2B"
       ]
     }
   }

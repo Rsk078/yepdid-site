@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Yepdid: shared tasks for two</title>
   <meta name="description" content="Yepdid is a to-do app for you and your person. One of you ticks a task, the other confirms it, and Yepdid keeps the score: deadlines, busy times and shared costs.">
-  <meta name="theme-color" content="#F4FBF2">
+  <meta name="theme-color" content="#F1F2ED">
   <link rel="icon" href="img/favicon-64.png" type="image/png">
   <link rel="icon" href="img/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -15,8 +15,8 @@
   <meta property="og:image" content="https://yepdid.com/img/icon-512.png">
   <meta property="og:url" content="https://yepdid.com/">
   <meta name="twitter:card" content="summary">
-  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("yepdid.theme");if(t==="dark"||t==="system")document.documentElement.dataset.theme=t;var b=localStorage.getItem("yepdid.brand");if(b)document.documentElement.style.setProperty("--brand",b);}catch(e){}</script>
-  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("yepdid.theme");if(t==="dark"||t==="system")document.documentElement.dataset.theme=t;var m={blue:["#9DB4FF","#3B51C4","#9DB4FF"],lilac:["#CDB8F5","#6238B5","#CDB8F5"],peach:["#FFC4A0","#A2440F","#FFC4A0"]}[localStorage.getItem("yepdid.colour")];if(m){var s=document.documentElement.style;s.setProperty("--brand",m[0]);s.setProperty("--brand-text-l",m[1]);s.setProperty("--brand-text-d",m[2]);}localStorage.removeItem("yepdid.brand");}catch(e){}</script>
+  <link rel="stylesheet" href="css/site.css?v=20261117">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -46,6 +46,11 @@
     <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></symbol>
     <symbol id="i-apple" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M3.61 1.81 13.79 12 3.61 22.19a1.5 1.5 0 0 1-.61-1.22V3.03c0-.5.24-.95.61-1.22zm10.89 10.9 2.43 2.43-11.2 6.48 8.77-8.91zm3.4-3.4 3.04 1.76a1.5 1.5 0 0 1 0 2.6l-3.04 1.76-2.7-2.71 2.7-2.71v-.7zM5.73 1.38l11.2 6.48-2.43 2.43-8.77-8.91z"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.17 6.81a1 1 0 0 0-3.98-3.98L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5zM15 5l4 4"/></symbol>
     <symbol id="i-squiggle" viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 30c10-14 24-20 38-14 10 4 16 2 28-8M60 4l10 4-4 10"/></symbol>
   </defs>
 </svg>
@@ -58,8 +63,8 @@
         <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
       </button>
-      <a href="https://app.yepdid.com">Use Yepdid on the web</a>
-      <a href="privacy.html">Privacy</a>
+      <a href="https://app.yepdid.com"><span class="long">Use Yepdid on the web</span><span class="short">Web app</span></a>
+      <a class="priv" href="privacy.html">Privacy</a>
       <a class="pill" href="#get">Get the app</a>
     </nav>
   </div>
@@ -150,7 +155,7 @@
             <div class="t-hero">
               <div class="big-ring" data-ring><svg><use href="#i-check"/></svg></div>
               <h4>Pick up milk</h4>
-              <span class="tag new" data-status>✱ New</span>
+              <span class="tag new" data-status>● New</span>
               <span class="due-pill" data-due>Due today 7:00 pm, for Asha</span>
             </div>
             <div class="timeline">
@@ -158,7 +163,7 @@
               <ul data-timeline><li><i></i><span>Ben created</span><small>2 min ago</small></li></ul>
             </div>
             <div class="good-job" data-goodjob><div class="px-bubble green"><div class="out"><div class="in">GOOD JOB!</div></div></div></div>
-            <div style="margin-top:auto;display:grid;gap:6px">
+            <div style="margin-top:auto;display:grid;gap:7px">
               <button class="btn" data-main>✓ Mark done</button>
               <button class="btn ghost" data-notyet hidden>Not yet</button>
             </div>
@@ -176,28 +181,28 @@
         <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">So what's on today?</div></div></div></div>
         <span class="screen-name reveal"><i><svg><use href="#i-list"/></svg></i>Home</span>
         <h2 class="reveal">Your shared board, already sorted.</h2>
-        <p class="reveal">Home sorts everything into <strong>Overdue</strong>, <strong>Today</strong>, <strong>Tomorrow</strong>, <strong>This week</strong> and <strong>Later</strong>, with <strong>Done</strong> at the bottom. The ring around your face fills as today's tasks get ticked.</p>
-        <p class="reveal">Days with something due get a dot, and a day where it's all done gets a little check. Tap a day on the strip to see just that day. Filter by <strong>All</strong>, <strong>Mine</strong>, your partner's name or <strong>Private</strong>. Swipe a task right to mark it done, or tap it to open it.</p>
-        <p class="try reveal">Swipe a card right, or tap a filter <svg><use href="#i-squiggle"/></svg></p>
+        <p class="reveal">Home says how many things are left today and sorts the rest into <strong>Overdue</strong>, <strong>Today</strong>, <strong>Tomorrow</strong>, <strong>This week</strong> and <strong>Later</strong>, with <strong>Done</strong> at the bottom. When something is due within the hour, it jumps to the top in a big lime card with a countdown.</p>
+        <p class="reveal">Days with something due get a dot, and a day where it's all done gets a little check. Tap a day on the strip to see just that day. Filter by <strong>All</strong>, <strong>Mine</strong>, your partner's name or <strong>Private</strong>. Tap the ring or swipe right to mark a task done, or tap it to open it.</p>
+        <p class="try reveal">Tick the lime card, or tap a filter <svg><use href="#i-squiggle"/></svg></p>
       </div>
       <div class="stage reveal d1">
         <div class="phone">
           <div class="screen" id="demo-home">
             <div class="status-row"><span>9:41</span><span>●●●</span></div>
-            <div class="hero-bar">
-              <div class="ring"><svg viewBox="0 0 40 40"><circle class="track" cx="20" cy="20" r="18"/><circle class="arc" cx="20" cy="20" r="18" data-arc/></svg><b>A</b></div>
-              <div class="hb-words"><strong>Hello, Asha</strong><span data-left>3 things left today</span></div>
-              <span class="round"><svg><use href="#i-bell"/></svg></span>
+            <div class="home-head">
+              <div><span class="hello">Hello, Asha</span><h4 data-left><mark>3 things</mark> left today</h4></div>
+              <div class="btns"><span class="round"><svg><use href="#i-bell"/></svg></span><span class="ava a lg">A</span></div>
             </div>
             <div class="week" data-week></div>
             <div class="chips" data-filters>
               <button class="chip" aria-pressed="true" data-f="all">All</button>
               <button class="chip" aria-pressed="false" data-f="mine">Mine</button>
               <button class="chip" aria-pressed="false" data-f="ben">Ben</button>
-              <button class="chip" aria-pressed="false" data-f="private">Private</button>
+              <button class="chip" aria-pressed="false" data-f="private"><svg><use href="#i-lock"/></svg>Private</button>
             </div>
+            <div class="soon" data-soon hidden></div>
             <div class="list" data-board></div>
-            <div class="tabbar" aria-hidden="true"><span class="add">+ New task</span><span class="icons"><span class="on"><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span></span></div>
+            <div class="tabbar" aria-hidden="true"><span class="tab on"><svg><use href="#i-list"/></svg>Tasks</span><span class="tab"><svg><use href="#i-cal"/></svg>Schedule</span><span class="tab"><svg><use href="#i-wallet"/></svg>Money</span><span class="add"><svg width="13" height="13"><use href="#i-plus"/></svg>Task</span></div>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
           </div>
         </div>
@@ -212,7 +217,7 @@
         <div class="say reveal"><span class="face ben" aria-hidden="true">B</span><div class="px-bubble"><div class="out"><div class="in">Plants need water before Tuesday!</div></div></div></div>
         <span class="screen-name reveal"><i><svg><use href="#i-calclock"/></svg></i>New task</span>
         <h2 class="reveal">A new task in a few taps.</h2>
-        <p class="reveal">Write it, choose who it's for (<strong>Me</strong>, your partner or <strong>Either</strong>) and when. Tap a day and a time and it's set, with the full date right on the Due chip. Quick picks cover <strong>Today</strong>, <strong>Tomorrow</strong> and <strong>This weekend</strong>.</p>
+        <p class="reveal">Write it, choose who it's for (<strong>Me</strong>, your partner or <strong>Either</strong>) and when. The sheet reads it back as a sentence: <em>Asha needs to water the plants by today, 9 pm.</em> Quick picks cover <strong>Today</strong>, <strong>Tomorrow</strong> and <strong>This weekend</strong>.</p>
         <p class="reveal">Busy time is off limits: try to put a deadline there and it shakes its head. Add a checklist (paste a list and every line becomes its own item), attach a photo or PDF, or make the whole task <strong>Private</strong> so only you see it. Share a photo, PDF or note to Yepdid from another app and it starts a new task.</p>
         <p class="try reveal">Tap a time, then the busy one <svg><use href="#i-squiggle"/></svg></p>
       </div>
@@ -220,21 +225,20 @@
         <div class="phone">
           <div class="screen" id="demo-new">
             <div class="status-row"><span>9:41</span><span>●●●</span></div>
-            <div class="sheet-head">New task<span class="round"><svg><use href="#i-x"/></svg></span></div>
-            <div class="field"><label>Title</label><div class="input"><span data-type></span><span class="caret"></span></div></div>
-            <div class="field"><label>For</label><div class="chips" data-for>
-              <button class="chip" aria-pressed="false">Me</button><button class="chip" aria-pressed="true">Asha</button><button class="chip" aria-pressed="false">Either</button>
+            <div class="sheet-head"><span class="eyebrow">New task</span><span class="round"><svg><use href="#i-x"/></svg></span></div>
+            <div class="sentence"><span class="pick" data-forpick><span class="ava a" data-forava>A</span><span data-forname>Asha</span></span><span data-needs>needs to</span></div>
+            <div class="main-input"><span data-type></span><span class="caret"></span></div>
+            <div class="sentence">by <span class="pick" data-duechip><span data-duelabel></span></span></div>
+            <div class="field"><span class="eyebrow">For</span><div class="chips" data-for>
+              <button class="chip choice" aria-pressed="false">Me</button><button class="chip choice" aria-pressed="true">Asha</button><button class="chip choice" aria-pressed="false">Either</button>
             </div></div>
-            <div class="field"><label>Due</label><div class="chips">
-              <span class="chip on" data-duechip><svg><use href="#i-calclock"/></svg><span data-duelabel></span></span>
-              <button class="chip" data-quick="0">Today</button><button class="chip" data-quick="1">Tomorrow</button>
-            </div></div>
-            <div class="picker">
-              <div class="chips" data-pdays></div>
-              <div class="slots" data-slots></div>
-              <div class="refusal" data-refusal aria-live="polite"></div>
+            <div class="field"><span class="eyebrow">When</span><div class="chips" data-pdays></div></div>
+            <div class="times" data-slots></div>
+            <div class="refusal" data-refusal aria-live="polite"></div>
+            <div class="tiles">
+              <div class="tile-box"><svg><use href="#i-clip"/></svg>Files<small>Photo or PDF</small></div>
+              <div class="tile-box"><svg><use href="#i-lock"/></svg>Private<small>Only you see it</small><button class="switch" role="switch" aria-checked="false" data-switch aria-label="Private"></button></div>
             </div>
-            <div class="row-switch"><span class="ico"><svg><use href="#i-lock"/></svg></span><div>Private<small>Only you can see this</small></div><button class="switch" role="switch" aria-checked="false" data-switch aria-label="Private"></button></div>
             <button class="btn" data-add>Add task</button>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
           </div>
@@ -250,27 +254,25 @@
         <div class="say right reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">I'm at work till six, don't plan me in!</div></div></div></div>
         <span class="screen-name reveal"><i><svg><use href="#i-cal"/></svg></i>Schedule</span>
         <h2 class="reveal">When you're busy, it already knows.</h2>
-        <p class="reveal">Add busy time once or every week, and see both of you side by side, with busy runs hatched like the pixels in our logo. A deadline can't land inside your busy time, and Yepdid points you to the next free slot.</p>
+        <p class="reveal">Add busy time once or every week. <strong>Who's busy</strong> shows both of you on one bar each, busy runs hatched like the pixels in our logo, with a line for right now. A deadline can't land inside your busy time, and Yepdid points you to the next free slot.</p>
         <p class="try reveal">Tap + Busy time <svg><use href="#i-squiggle"/></svg></p>
       </div>
       <div class="stage reveal d1">
         <div class="phone">
           <div class="screen" id="demo-sched">
             <div class="status-row"><span>9:41</span><span>●●●</span></div>
-            <div class="head-row"><span class="round"><svg><use href="#i-back"/></svg></span><b style="font-size:14px" data-sday>Today</b><span class="round" style="transform:scaleX(-1)"><svg><use href="#i-back"/></svg></span></div>
-            <div class="sched">
-              <div class="hours"><span></span><span>2 pm</span><span>3 pm</span><span>4 pm</span><span>5 pm</span><span>6 pm</span><span>7 pm</span><span>8 pm</span></div>
-              <div class="col"><div class="col-head"><i style="background:var(--ocean)"></i>Ben</div>
-                <div class="blk" data-blk style="--c:var(--ocean);top:16%;height:24%">🏋️ Gym</div>
-                <div class="blk" data-addblk style="--c:var(--ocean);top:46%;height:22%">🎸 Band</div>
-              </div>
-              <div class="col"><div class="col-head"><i style="background:var(--coral)"></i>Asha</div>
-                <div class="blk" data-blk style="--c:var(--coral);top:9%;height:58%">💼 Work</div>
-              </div>
-              <div class="dl" style="top:80%;left:30px"><span>🥛 Pick up milk 7:00 pm</span></div>
+            <div class="page-title"><div><small data-sweek>This week</small><h4>Schedule</h4></div><div class="grp"><span class="round"><svg><use href="#i-back"/></svg></span><span class="round" style="transform:scaleX(-1)"><svg><use href="#i-back"/></svg></span></div></div>
+            <div class="week" data-sstrip></div>
+            <div class="busy-card">
+              <div class="card-top"><span class="eyebrow">Who's busy</span><span class="now-pill">Now 5:40 pm</span></div>
+              <div class="lane"><span class="who"><span class="ava a sm">A</span>Asha</span><div class="track" style="--c:var(--asha)"><span class="blk" data-blk style="left:19.4%;width:47.2%"></span><span class="tdot" style="left:72.2%"></span><span class="now-line" style="left:64.8%"></span></div></div>
+              <div class="lane"><span class="who"><span class="ava sm">B</span>Ben</span><div class="track" style="--c:var(--ben)"><span class="blk" data-blk style="left:5.6%;width:5.6%"></span><span class="blk" data-addblk style="left:77.8%;width:11.1%"></span><span class="now-line" style="left:64.8%"></span></div></div>
+              <div class="axis"><span>6 am</span><span>12 pm</span><span>6 pm</span><span>12 am</span></div>
             </div>
+            <div class="day-title" data-sday>Today</div>
+            <div class="sitems scroll" data-sitems></div>
+            <div class="tabbar"><span class="tab"><svg><use href="#i-list"/></svg>Tasks</span><span class="tab on"><svg><use href="#i-cal"/></svg>Schedule</span><span class="tab"><svg><use href="#i-wallet"/></svg>Money</span><button type="button" class="add" data-addbusy><svg width="13" height="13"><use href="#i-plus"/></svg>Busy</button></div>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
-            <div class="tabbar"><button type="button" class="add" data-addbusy>+ Busy time</button><span class="icons" aria-hidden="true"><span><svg><use href="#i-list"/></svg></span><span class="on"><svg><use href="#i-cal"/></svg></span><span><svg><use href="#i-wallet"/></svg></span></span></div>
           </div>
         </div>
       </div>
@@ -293,15 +295,16 @@
         <div class="phone">
           <div class="screen" id="demo-money">
             <div class="status-row"><span>9:41</span><span>●●●</span></div>
-            <b style="font-size:18px;font-weight:800">Money</b>
+            <div class="page-title"><h4>Money</h4><span class="round"><svg><use href="#i-cal"/></svg></span></div>
             <div class="balance">
-              <span data-owe>Asha owes you</span>
+              <div class="card-top"><span data-owe>Asha owes you</span><span class="dir" data-dir></span></div>
               <strong data-amount>₹430</strong>
-              <div class="seesaw" data-seesaw><div class="beam"><span>B</span><span>A</span></div><div class="pivot"></div></div>
+              <button class="settle" data-settle><svg><use href="#i-swap"/></svg>Settle up</button>
             </div>
-            <div class="chips"><button class="chip on" data-addexp>+ Add expense</button><button class="chip" data-settle>Settle up</button></div>
+            <div class="spent"><span>Spent in <span data-month></span></span><b data-spent></b></div>
+            <div class="sec"><b>This month</b><span data-count></span></div>
             <div class="list" data-mlines></div>
-            <div class="tabbar" aria-hidden="true"><span class="add">+ Expense</span><span class="icons"><span><svg><use href="#i-list"/></svg></span><span><svg><use href="#i-cal"/></svg></span><span class="on"><svg><use href="#i-wallet"/></svg></span></span></div>
+            <div class="tabbar"><span class="tab"><svg><use href="#i-list"/></svg>Tasks</span><span class="tab"><svg><use href="#i-cal"/></svg>Schedule</span><span class="tab on"><svg><use href="#i-wallet"/></svg>Money</span><button type="button" class="add" data-addexp><svg width="13" height="13"><use href="#i-plus"/></svg>Expense</button></div>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
           </div>
         </div>
@@ -325,7 +328,7 @@
           <div class="screen" id="demo-feed">
             <div class="status-row"><span>9:41</span><span>●●●</span></div>
             <div class="push" data-push><img src="img/apple-touch-icon.png" alt=""><div><b>👉 Ben poked you</b><span>Time for “Water the plants”</span></div></div>
-            <div class="head-row"><span class="round"><svg><use href="#i-back"/></svg></span><b style="font-size:16px">Activity</b><span style="width:34px"></span></div>
+            <div class="page-head"><span class="round"><svg><use href="#i-back"/></svg></span><h4>Activity</h4></div>
             <ul class="feed" data-feed></ul>
             <button class="btn" style="margin-top:auto" data-pokeasha>👋 Poke Asha</button>
           </div>
@@ -341,7 +344,7 @@
         <div class="say reveal"><span class="face asha" aria-hidden="true">A</span><div class="px-bubble"><div class="out"><div class="in">Can I make it blue?</div></div></div></div>
         <span class="screen-name reveal"><i><svg><use href="#i-user"/></svg></i>You</span>
         <h2 class="reveal">Make it yours. (This page too.)</h2>
-        <p class="reveal">Your name and photo, your pair code, <strong>Light</strong> or <strong>Dark</strong>, and an <strong>App colour</strong>: green, blue, lilac or peach. Sign out here, or open <strong>Account</strong> to delete your account for good.</p>
+        <p class="reveal">Your name and photo, who you're paired with, <strong>Light</strong> or <strong>Dark</strong>, and an <strong>App colour</strong>: lime, blue, lilac or peach. Sign out here, or open <strong>Account</strong> to delete your account for good.</p>
         <p class="reveal">Go on, pick a colour or switch to dark. This whole website changes with it.</p>
         <p class="try reveal">Tap a colour <svg><use href="#i-squiggle"/></svg></p>
       </div>
@@ -349,18 +352,21 @@
         <div class="phone">
           <div class="screen" id="demo-you">
             <div class="status-row"><span>9:41</span><span>●●●</span></div>
-            <b style="font-size:18px;font-weight:800">You</b>
-            <div class="prof"><span class="ava">A</span><div>Asha<small>Paired with Ben</small></div><span class="chip">Edit</span></div>
-            <div class="panel"><h6>App colour</h6><div class="dots" data-dots>
-              <button style="--c:#A5E3AE" aria-pressed="true" aria-label="Green" data-c="#A5E3AE"></button>
-              <button style="--c:#9DB4FF" aria-pressed="false" aria-label="Blue" data-c="#9DB4FF"></button>
-              <button style="--c:#CDB8F5" aria-pressed="false" aria-label="Lilac" data-c="#CDB8F5"></button>
-              <button style="--c:#FFC4A0" aria-pressed="false" aria-label="Peach" data-c="#FFC4A0"></button>
-            </div></div>
-            <div class="panel"><h6>Appearance</h6><div class="seg" data-theme-seg>
-              <button aria-pressed="false" data-t="system">System</button><button aria-pressed="true" data-t="light">Light</button><button aria-pressed="false" data-t="dark">Dark</button>
-            </div></div>
-            <div class="panel"><h6>Your code</h6><p>Share it so your person can pair with you.</p><div class="code" data-code></div><button class="chip on" style="justify-self:center" data-copy>Copy code</button></div>
+            <div class="page-head"><span class="round"><svg><use href="#i-back"/></svg></span><h4>You</h4></div>
+            <div class="ycard"><div class="prof"><span class="ava a xl">A</span><div>Asha<small><i></i>coral</small></div><span class="pill-btn">Edit</span></div></div>
+            <div class="ycard"><div class="prof"><span class="ava lg">B</span><div>Ben<small>Together 11 days</small></div><span class="pill-btn danger">Unpair</span></div></div>
+            <div class="ycard">
+              <h6>Appearance</h6><p>Light, dark, or the same as your phone</p>
+              <div class="seg" data-theme-seg><button aria-pressed="false" data-t="system">System</button><button aria-pressed="true" data-t="light">Light</button><button aria-pressed="false" data-t="dark">Dark</button></div>
+              <h6>App colour</h6><p>Your cards and buttons, on this phone</p>
+              <div class="dots" data-dots>
+                <button style="--c:#D8F26A" aria-pressed="true" aria-label="Lime" data-c="lime"><svg><use href="#i-check"/></svg></button>
+                <button style="--c:#9DB4FF" aria-pressed="false" aria-label="Blue" data-c="blue"><svg><use href="#i-check"/></svg></button>
+                <button style="--c:#CDB8F5" aria-pressed="false" aria-label="Lilac" data-c="lilac"><svg><use href="#i-check"/></svg></button>
+                <button style="--c:#FFC4A0" aria-pressed="false" aria-label="Peach" data-c="peach"><svg><use href="#i-check"/></svg></button>
+              </div>
+            </div>
+            <div class="ycard acct"><span class="ic"><svg><use href="#i-user"/></svg></span><div>Account<small>asha@example.com</small></div></div>
             <div class="toast" role="status" aria-live="polite" data-toast></div>
           </div>
         </div>
@@ -374,13 +380,13 @@
       <div class="copy">
         <span class="screen-name reveal"><i><svg><use href="#i-user"/></svg></i>Getting started</span>
         <h2 class="reveal">Just you, or the two of you.</h2>
-        <p class="reveal">Sign in with a 6-digit email code or with Google, then pick <strong>Just me</strong> for your own tasks, checklists and reminders, or <strong>Me and my partner</strong>.</p>
-        <p class="reveal">To pair, share your 8-character code or invite them by email. Start solo today and add your partner later: your tasks come along as private ones.</p>
+        <p class="reveal">Sign in with a 6-digit email code, Google or Apple, then pick <strong>Just me</strong> for your own tasks, checklists and reminders, or <strong>Two of us</strong> for a partner, roommate or friend.</p>
+        <p class="reveal">To pair, share your 8-character code, or invite them by email: they tap the link and they're in, no code to type. Start solo today and add your person later: your tasks come along as private ones.</p>
       </div>
       <div class="pair-stage reveal d1">
         <div class="pair-card" data-solo><div class="faces"><span class="face asha">A</span></div><h3>Just me</h3><p>Your tasks, checklists and reminders. Add a partner any time.</p></div>
-        <div class="pair-card" data-duo><div class="faces"><span class="face asha">A</span><span class="face ben">B</span></div><h3>Me and my partner</h3><p>Share tasks, checks and costs with your person.</p></div>
-        <div class="pair-code"><span class="hand" style="font-size:26px;color:var(--pixel)">Share this with your person!</span><div class="boxes" data-boxes></div><span data-paired style="font-weight:700;opacity:0;transition:opacity .4s">Paired 🎉</span></div>
+        <div class="pair-card" data-duo><div class="faces"><span class="face asha">A</span><span class="face ben">B</span></div><h3>Two of us</h3><p>Share tasks, checks and costs with a partner, roommate or friend.</p></div>
+        <div class="pair-code"><span class="hand" style="font-size:26px;color:var(--brand)">Share this with your person!</span><div class="boxes" data-boxes></div><span data-paired style="font-weight:700;opacity:0;transition:opacity .4s">Paired 🎉</span></div>
       </div>
     </div>
   </section>
@@ -401,7 +407,7 @@
     <div class="wrap">
       <svg class="mini-bubble" viewBox="156 150 345 362" aria-hidden="true"><use href="#logo-mark"/></svg>
       <h2>Yep, get it.</h2>
-      <p>Yepdid is coming to the App Store and Google Play. Questions until then? Write to <a href="mailto:hello@yepdid.com" style="color:var(--pixel)">hello@yepdid.com</a>.</p>
+      <p>Yepdid is on the App Store, and coming soon to Google Play. Questions? Write to <a href="mailto:hello@yepdid.com" style="color:var(--brand)">hello@yepdid.com</a>.</p>
       <div class="stores" data-stores></div>
     </div>
   </section>
@@ -431,6 +437,6 @@
 </nav>
 
 <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
-<script src="js/site.js" defer></script>
+<script src="js/site.js?v=20261117" defer></script>
 </body>
 </html>

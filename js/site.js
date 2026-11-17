@@ -5,7 +5,7 @@
 
   /* Store links: paste the real URLs here once the app is live; until then the buttons say Soon. */
   const STORE = {
-    apple: "",
+    apple: "https://apps.apple.com/app/id6834288221",
     google: "",
   };
 
@@ -20,6 +20,23 @@
   const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
   const dayLabel = (d) => `${WD[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`;
   const rupees = (n) => `₹${Math.abs(n).toLocaleString("en-IN")}`;
+  const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  /** Monday of this week, as the app's week strip starts. */
+  const weekStart = addDays(today, -((today.getDay() + 6) % 7));
+  const dayOffset = (d) => Math.round((d - today) / 864e5);
+  /** A person's avatar: a = Asha, b = Ben, e = either of them. */
+  const faces = (w, size = "sm") =>
+    w === "e"
+      ? `<span class="ava ${size}">B</span><span class="ava a ${size}">A</span>`
+      : `<span class="ava ${w === "a" ? "a " : ""}${size}">${w === "a" ? "A" : "B"}</span>`;
+  /** The seven-day strip, Monday first: today picked, a dot on days in `marks` (offsets). */
+  function weekStrip(el, marks) {
+    el.innerHTML = Array.from({ length: 7 }, (_, k) => {
+      const d = addDays(weekStart, k);
+      const off = dayOffset(d);
+      return `<button aria-pressed="${off === 0}" data-day="${off}" class="${marks.has(off) ? "dot" : ""}" aria-label="${dayLabel(d)}">${WD[d.getDay()]}<b>${d.getDate()}</b><i></i></button>`;
+    }).join("");
+  }
   const store = {
     get(k) {
       try {
@@ -123,7 +140,7 @@
     const c = $("#confetti");
     if (!c) return { at() {}, burst() {} };
     const ctx = c.getContext("2d");
-    const colours = ["#90FA90", "#FD7501", "#E5399B", "#3A8DDE", "#F2C94C", "#6FF47E"];
+    const colours = ["#D8F26A", "#90FA90", "#FD7501", "#E5399B", "#3A8DDE", "#F2C94C"];
     let parts = [];
     let raf = 0;
     const fit = () => {
@@ -300,7 +317,7 @@
     if (!reduce) setTimeout(() => confetti.at($("#logo-bubble"), 60, 1), 1350);
 
     const drift = $(".drift");
-    const colours = ["#90FA90", "#6FF47E", "#FD7501", "#A5E3AE", "#3A8DDE", "#F2A6F2"];
+    const colours = ["#D8F26A", "#90FA90", "#FD7501", "#6FF47E", "#3A8DDE", "#F2A6F2"];
     if (drift && !reduce) {
       for (let i = 0; i < 26; i++) {
         const sq = document.createElement("i");
@@ -400,7 +417,7 @@
     function reset() {
       step = 0;
       ring.classList.remove("checked");
-      setStatus("new", "✱ New");
+      setStatus("new", "● New");
       due.textContent = "Due today 7:00 pm, for Asha";
       timeline.innerHTML = '<li><i></i><span>Ben created</span><small>2 min ago</small></li>';
       main.textContent = "✓ Mark done";
@@ -443,7 +460,7 @@
       line("", "Ben said not yet: “Oat milk, please”");
       toast("Sent back to Asha");
       ring.classList.remove("checked");
-      setStatus("new", "✱ Open");
+      setStatus("new", "● Open");
       due.textContent = "Due today 7:00 pm, for Asha";
       notYet.hidden = true;
       main.textContent = "✓ Mark done";
@@ -470,26 +487,22 @@
     const toast = toaster(root);
     const board = $("[data-board]", root);
     const week = $("[data-week]", root);
-    const arc = $("[data-arc]", root);
     const left = $("[data-left]", root);
-    const later = addDays(today, 3);
+    const soon = $("[data-soon]", root);
+    // `soon`: due within the hour, so it leads in the lime card instead of the list.
     const tasks = [
-      { id: 1, t: "Book the cab", who: "b", state: "done", day: 0, sec: "Done", icon: "i-phone", due: ["6:00 pm"] },
-      { id: 2, t: "Pick up milk", who: "a", state: "new", day: 0, sec: "Today", icon: "i-cart", due: ["7:00 pm"] },
-      { id: 3, t: "Walk Bruno", who: "b", state: "open", day: 0, sec: "Today", icon: "i-paw", due: ["8:00 pm"] },
-      { id: 4, t: "Call mom", who: "a", priv: true, state: "open", day: 0, sec: "Today", icon: "i-phone", due: ["8:30 pm"] },
-      { id: 5, t: "Pay the electricity bill", who: "e", state: "open", day: 0, sec: "Today", icon: "i-pay", due: ["9:00 pm"] },
-      { id: 6, t: "Gym", who: "a", state: "open", day: 1, sec: "Tomorrow", icon: "i-gym", due: ["Tomorrow", "7:00 am"] },
-      { id: 7, t: "Water the plants", who: "b", state: "open", day: 3, sec: "This week", icon: "i-sprout", due: [WD[later.getDay()], "9:00 pm"] },
+      { id: 1, t: "Book the cab", who: "b", state: "done", day: 0, time: "6:00 pm" },
+      { id: 2, t: "Pick up milk", who: "a", state: "new", day: 0, time: "6:15 pm", soon: "15 min" },
+      { id: 3, t: "Walk Bruno", who: "b", state: "open", day: 0, time: "8:00 pm" },
+      { id: 4, t: "Call mom", who: "a", priv: true, state: "open", day: 0, time: "8:30 pm" },
+      { id: 5, t: "Pay the electricity bill", who: "e", state: "open", day: 0, time: "9:00 pm" },
+      { id: 6, t: "Gym", who: "a", state: "open", day: 1, time: "7:00 am" },
+      { id: 7, t: "Water the plants", who: "b", state: "new", day: 3, time: "9:00 pm" },
     ];
-    const ORDER = ["Overdue", "Today", "Tomorrow", "This week", "Later", "Done"];
+    const ORDER = ["Today", "Tomorrow", "This week", "Done"];
+    const secOf = (t) => (t.state === "done" ? "Done" : t.day === 0 ? "Today" : t.day === 1 ? "Tomorrow" : "This week");
     let filter = "all";
     let pickDay = null;
-    const tagFor = (t) =>
-      ({
-        new: ["new", "✱ New"],
-        done: ["done", "✓ Done"],
-      })[t.state] ?? null;
     const visible = (t) => {
       if (pickDay !== null && t.day !== pickDay) return false;
       if (filter === "mine") return t.who === "a" || t.who === "e" || t.priv;
@@ -497,63 +510,88 @@
       if (filter === "private") return !!t.priv;
       return true;
     };
-    function ringUpdate() {
-      const todays = tasks.filter((t) => t.day === 0);
-      const done = todays.filter((t) => t.state === "done").length;
-      const leftN = todays.length - done;
-      arc.style.strokeDashoffset = String(113 * (1 - done / todays.length));
-      left.textContent = leftN === 0 ? "All done today!" : leftN === 1 ? "1 thing left today" : `${leftN} things left today`;
+    const soonTask = () => tasks.find((t) => t.soon && t.state !== "done" && visible(t));
+    const whenHtml = (t) => {
+      const d = addDays(today, t.day);
+      const label = t.day === 0 ? "Today" : t.day === 1 ? "Tmrw" : WD[d.getDay()];
+      return `<span class="when"><b class="${t.day === 1 ? "near" : ""}">${label}</b>${t.time}</span>`;
+    };
+    const status = (t) =>
+      t.state === "new" ? '<span class="st new">• New</span>' : t.state === "done" ? "<span>Done</span>" : `<span>${t.who === "b" ? "Ben" : t.who === "e" ? "Either of you" : "You"}</span>`;
+    function headline() {
+      const n = tasks.filter((t) => t.day === 0 && t.state !== "done").length;
+      left.innerHTML = n === 0 ? "All done <mark>today!</mark>" : `<mark>${n} thing${n === 1 ? "" : "s"}</mark> left today`;
     }
     function render() {
-      const shown = tasks.filter(visible);
+      const lead = soonTask();
+      soon.hidden = !lead;
+      if (lead) {
+        soon.innerHTML = `<span class="eyebrow">Today · due in</span>${lead.state === "new" ? '<span class="tagnew">New</span>' : ""}<span class="left">${lead.soon}</span><span class="t">${lead.t}</span><span class="meta">${faces(lead.who)}You · ${lead.time}</span><button class="check" data-soon-check aria-label="Mark “${lead.t}” done"><svg><use href="#i-check"/></svg></button>`;
+      }
+      const shown = tasks.filter((t) => visible(t) && t !== lead);
       if (!shown.length) {
         board.innerHTML = `<p style="text-align:center;color:var(--scr-muted);margin:24px 0">${filter === "private" ? "No private tasks. Add one and only you will see it." : pickDay !== null ? "Nothing due that day." : "Nothing here for you"}</p>`;
         return;
       }
-      const groups = pickDay !== null ? [[dayLabel(addDays(today, pickDay)), shown]] : ORDER.map((s) => [s, shown.filter((t) => t.sec === s)]).filter(([, l]) => l.length);
+      const groups =
+        pickDay !== null ? [[DAYS[addDays(today, pickDay).getDay()], shown]] : ORDER.map((s) => [s, shown.filter((t) => secOf(t) === s)]).filter(([, l]) => l.length);
       board.innerHTML = groups
         .map(
           ([title, list]) =>
-            `<div class="sec-title">${title}</div>` +
+            `<div class="sec"><b>${title}</b><span>${list.length} task${list.length === 1 ? "" : "s"}</span></div>` +
             list
-              .map((t) => {
-                const tag = tagFor(t);
-                const face = t.who === "e" ? '<span class="who b" style="right:6px">B</span><span class="who a">A</span>' : `<span class="who ${t.who}">${t.who === "a" ? "A" : "B"}</span>`;
-                return `<div class="card-wrap" data-id="${t.id}"><div class="swipe-under">✓ Done</div><div class="card"><span class="tile"><svg><use href="#${t.icon}"/></svg>${face}</span><span class="body"><span class="t">${t.priv ? "🔒 " : ""}${t.t}</span>${tag ? `<span class="tag ${tag[0]}">${tag[1]}</span>` : ""}</span><span class="due">${t.due.length > 1 ? `${t.due[0]}<small>${t.due[1]}</small>` : t.due[0]}</span></div></div>`;
-              })
+              .map(
+                (t) =>
+                  `<div class="row-wrap" data-id="${t.id}"><div class="swipe-under">✓ Done</div><div class="row${t.state === "done" ? " done" : ""}">${whenHtml(t)}<span class="body"><span class="t">${t.t}</span><span class="meta">${faces(t.who)}${t.priv ? '<svg class="lock"><use href="#i-lock"/></svg>' : ""}${status(t)}</span></span><button class="ring" data-check aria-label="Mark “${t.t}” done"><svg><use href="#i-check"/></svg></button></div></div>`,
+              )
               .join(""),
         )
         .join("");
     }
-    function act(t, wrap) {
+    function act(t, el) {
       if (t.state === "done") return toast("Already ticked");
       if (t.who === "b") return toast("That one's Ben's to tick");
       t.state = "done";
-      t.sec = "Done";
-      confetti.at(wrap, 30, 0.6);
+      confetti.at(el, 30, 0.6);
       if (!t.priv) toast("Done! Ben can confirm it");
       render();
-      ringUpdate();
+      headline();
     }
+    soon.addEventListener("click", (e) => {
+      const t = soonTask();
+      if (!t) return;
+      if (!e.target.closest("[data-soon-check]")) return toast(`Opens “${t.t}”`);
+      soon.classList.add("gone");
+      setTimeout(() => {
+        soon.classList.remove("gone");
+        act(t, soon);
+      }, reduce ? 0 : 320);
+    });
+    board.addEventListener("click", (e) => {
+      const ring = e.target.closest("[data-check]");
+      if (!ring) return;
+      const wrap = ring.closest(".row-wrap");
+      act(tasks.find((x) => x.id === Number(wrap.dataset.id)), ring);
+    });
     // Swipe right to check; a tap without a drag "opens" the task.
     board.addEventListener("pointerdown", (e) => {
-      const wrap = e.target.closest(".card-wrap");
-      if (!wrap) return;
-      const card = $(".card", wrap);
+      const wrap = e.target.closest(".row-wrap");
+      if (!wrap || e.target.closest("[data-check]")) return;
+      const row = $(".row", wrap);
       const t = tasks.find((x) => x.id === Number(wrap.dataset.id));
       const x0 = e.clientX;
       let dx = 0;
-      card.style.transition = "none";
+      row.style.transition = "none";
       const move = (ev) => {
         dx = Math.max(0, Math.min(130, ev.clientX - x0));
-        card.style.transform = `translateX(${dx}px)`;
+        row.style.transform = `translateX(${dx}px)`;
       };
       const up = () => {
         removeEventListener("pointermove", move);
         removeEventListener("pointerup", up);
         removeEventListener("pointercancel", up);
-        card.style.transition = "";
-        card.style.transform = "";
+        row.style.transition = "";
+        row.style.transform = "";
         if (dx > 70) act(t, wrap);
         else if (dx < 6) toast(`Opens “${t.t}”`);
       };
@@ -568,22 +606,17 @@
         render();
       }),
     );
-    const marks = new Set(tasks.map((t) => t.day));
-    week.innerHTML = Array.from({ length: 7 }, (_, k) => {
-      const off = k - 1;
-      const d = addDays(today, off);
-      return `<button aria-pressed="false" data-day="${off}" class="${off === 0 ? "today" : ""} ${marks.has(off) ? "dot" : ""}" aria-label="${dayLabel(d)}">${WD[d.getDay()].slice(0, 2).toUpperCase()}<b>${d.getDate()}</b><i></i></button>`;
-    }).join("");
+    weekStrip(week, new Set(tasks.map((t) => t.day)));
     $$("button", week).forEach((b) =>
       b.addEventListener("click", () => {
         const off = Number(b.dataset.day);
-        pickDay = pickDay === off ? null : off;
-        $$("button", week).forEach((x) => x.setAttribute("aria-pressed", String(Number(x.dataset.day) === pickDay)));
+        pickDay = off === 0 || pickDay === off ? null : off;
+        $$("button", week).forEach((x) => x.setAttribute("aria-pressed", String(Number(x.dataset.day) === (pickDay ?? 0))));
         render();
       }),
     );
     render();
-    onSeen(root, () => setTimeout(ringUpdate, 300));
+    headline();
   }
 
   /* ---------- Demo: New task ---------- */
@@ -594,32 +627,46 @@
     const typed = $("[data-type]", root);
     const label = $("[data-duelabel]", root);
     const dueChip = $("[data-duechip]", root);
+    const forPick = $("[data-forpick]", root);
+    const forName = $("[data-forname]", root);
+    const forAva = $("[data-forava]", root);
+    const needs = $("[data-needs]", root);
     const pdays = $("[data-pdays]", root);
     const slots = $("[data-slots]", root);
     const refusal = $("[data-refusal]", root);
     const sw = $("[data-switch]", root);
+    // This is Ben's phone: "Me" is Ben, and Asha is busy at work until 9 tonight.
     let forWho = "Asha";
     let day = 0;
     let time = "9:00 pm";
-    const showDue = (flash) => {
-      label.textContent = `${dayLabel(addDays(today, day))}, ${time}`;
-      if (flash && !reduce) dueChip.animate([{ transform: "scale(1.12)" }, { transform: "scale(1)" }], { duration: 350, easing: "cubic-bezier(.2,1.6,.4,1)" });
+    const dayName = (k) => (k === 0 ? "Today" : k === 1 ? "Tomorrow" : WD[addDays(today, k).getDay()]);
+    const bounce = (el) => {
+      if (!reduce) el.animate([{ transform: "scale(1.1)" }, { transform: "scale(1)" }], { duration: 350, easing: "cubic-bezier(.2,1.6,.4,1)" });
     };
+    const showDue = (flash) => {
+      label.textContent = `${dayName(day)}, ${time.replace(":00", "")}`;
+      if (flash) bounce(dueChip);
+    };
+    function showFor() {
+      const me = forWho === "Me";
+      forName.textContent = me ? "You" : forWho === "Either" ? "Either of you" : forWho;
+      forAva.hidden = forWho === "Either";
+      forAva.className = `ava${forWho === "Asha" ? " a" : ""}`;
+      forAva.textContent = forWho === "Asha" ? "A" : "B";
+      needs.textContent = me || forWho === "Either" ? "need to" : "needs to";
+      bounce(forPick);
+    }
     function renderDays() {
-      pdays.innerHTML = Array.from({ length: 4 }, (_, k) => {
-        const d = addDays(today, k);
-        return `<button class="chip" aria-pressed="${k === day}" data-d="${k}">${k === 0 ? "Today" : `${WD[d.getDay()]} ${d.getDate()}`}</button>`;
-      }).join("");
+      pdays.innerHTML = Array.from({ length: 4 }, (_, k) => `<button class="chip choice" aria-pressed="${k === day}" data-d="${k}">${dayName(k)}</button>`).join("");
     }
     function renderSlots() {
-      const busy = forWho === "Asha";
-      const rows = busy
-        ? [["6:00 pm"], ["6:30 pm"], ["busy"], ["9:00 pm"], ["9:30 pm"]]
-        : [["6:00 pm"], ["6:30 pm"], ["7:00 pm"], ["7:30 pm"], ["9:00 pm"]];
+      // Asha's busy time only blocks tonight, and only when the task is hers.
+      const busy = forWho === "Asha" && day === 0;
+      const rows = busy ? ["6:00 pm", "6:30 pm", "busy", "9:00 pm", "9:30 pm"] : ["6:00 pm", "6:30 pm", "7:00 pm", "7:30 pm", "9:00 pm"];
       slots.innerHTML = rows
-        .map(([v]) =>
+        .map((v) =>
           v === "busy"
-            ? `<button class="slot busy" data-busy aria-label="Busy 7:00 pm to 9:00 pm, Asha"><span>7:00 pm–9:00 pm</span><span>💼 Asha</span></button>`
+            ? `<button class="slot busy" data-busy aria-label="Busy 7:00 pm to 9:00 pm, Asha">7–9 pm · busy</button>`
             : `<button class="slot" aria-pressed="${v === time}" data-t="${v}">${v}</button>`,
         )
         .join("");
@@ -630,6 +677,7 @@
       day = Number(b.dataset.d);
       refusal.textContent = "";
       renderDays();
+      renderSlots();
       showDue(true);
     });
     slots.addEventListener("click", (e) => {
@@ -647,20 +695,12 @@
       renderSlots();
       showDue(true);
     });
-    $$("[data-quick]", root).forEach((b) =>
-      b.addEventListener("click", () => {
-        day = Number(b.dataset.quick);
-        time = "9:00 pm";
-        renderDays();
-        renderSlots();
-        showDue(true);
-      }),
-    );
     $$("[data-for] .chip", root).forEach((b) =>
       b.addEventListener("click", () => {
         forWho = b.textContent;
         $$("[data-for] .chip", root).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
         refusal.textContent = "";
+        showFor();
         renderSlots();
       }),
     );
@@ -686,14 +726,39 @@
   function schedDemo() {
     const root = $("#demo-sched");
     if (!root) return;
-    $("[data-sday]", root).textContent = `Today, ${dayLabel(today)}`;
     const toast = toaster(root);
+    $("[data-sweek]", root).textContent = `Week of ${weekStart.getDate()} ${MON[weekStart.getMonth()]}`;
+    $("[data-sday]", root).textContent = DAYS[today.getDay()];
+    weekStrip($("[data-sstrip]", root), new Set([0]));
+    const list = $("[data-sitems]", root);
     const band = $("[data-addblk]", root);
+    const items = [
+      { at: 7, tm: ["7:00 am", "to 8:00 am"], c: "ben", t: "Gym", sub: "Ben · busy · weekly", busy: true },
+      { at: 9.5, tm: ["9:30 am", "to 6:00 pm"], c: "asha", t: "Work", sub: "Asha · busy · weekly", busy: true },
+      { at: 19, tm: ["7:00 pm"], c: "asha", t: "Pick up milk", sub: "Asha · task" },
+    ];
+    const bandItem = { at: 20, tm: ["8:00 pm", "to 10:00 pm"], c: "ben", t: "Band practice", sub: "Ben · busy · weekly", busy: true };
+    const NOW = 17.67;
+    function render() {
+      const all = [...items, ...(band.classList.contains("in") ? [bandItem] : [])].sort((a, b) => a.at - b.at);
+      let html = "";
+      let nowShown = false;
+      for (const it of all) {
+        if (!nowShown && it.at > NOW) {
+          html += '<div class="now-div"><span class="now-pill">Now</span></div>';
+          nowShown = true;
+        }
+        html += `<div class="sitem" style="--c:var(--${it.c})"><span class="tm"><b>${it.tm[0]}</b>${it.tm[1] ?? ""}</span><span class="ico${it.busy ? "" : " task"}"></span><span class="t">${it.t}<small>${it.sub}</small></span></div>`;
+      }
+      list.innerHTML = html;
+    }
     $("[data-addbusy]", root).addEventListener("click", () => {
       const adding = !band.classList.contains("in");
       band.classList.toggle("in", adding);
+      render();
       if (adding) toast("Busy time added for Ben. Deadlines skip it.");
     });
+    render();
     onSeen(root, async () => {
       for (const b of $$("[data-blk]", root)) {
         b.classList.add("in");
@@ -709,19 +774,24 @@
     const toast = toaster(root);
     const linesEl = $("[data-mlines]", root);
     const owe = $("[data-owe]", root);
+    const dir = $("[data-dir]", root);
     const amount = $("[data-amount]", root);
-    const seesaw = $("[data-seesaw]", root);
+    const spent = $("[data-spent]", root);
+    const count = $("[data-count]", root);
     const balanceEl = $(".balance", root);
+    $("[data-month]", root).textContent = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][today.getMonth()];
+    // This is Ben's phone: "you" is Ben (b), and Asha is a.
     const lines = [
-      { t: "Cab home", by: "a", amt: 340, split: "half", icon: "i-phone" },
-      { t: "Groceries", by: "b", amt: 1200, split: "half", icon: "i-cart" },
+      { t: "Cab home", by: "a", amt: 340, split: "half", when: "yesterday" },
+      { t: "Groceries", by: "b", amt: 1200, split: "half", when: "today" },
     ];
     const extras = [
-      { t: "Movie tickets", by: "a", amt: 500, split: "half", icon: "i-sparkles" },
-      { t: "Dinner out", by: "b", amt: 1850, split: "half", icon: "i-cart" },
-      { t: "Plant pots", by: "a", amt: 600, split: "all", icon: "i-sprout" },
+      { t: "Movie tickets", by: "a", amt: 500, split: "half" },
+      { t: "Dinner out", by: "b", amt: 1850, split: "half" },
+      { t: "Plant pots", by: "a", amt: 600, split: "all" },
     ];
     let next = 0;
+    // What a line means for me (Ben): positive, Asha owes me more.
     const effect = (l) => {
       if (l.split === "settle") return l.by === "a" ? -l.amt : l.amt;
       const owed = l.split === "half" ? l.amt / 2 : l.amt;
@@ -731,16 +801,21 @@
     function render() {
       const b = Math.round(balance());
       owe.textContent = b > 0 ? "Asha owes you" : b < 0 ? "You owe Asha" : "All square";
+      dir.innerHTML = b === 0 ? "" : b > 0 ? `${faces("a")}<svg><use href="#i-arrow"/></svg>${faces("b")}` : `${faces("b")}<svg><use href="#i-arrow"/></svg>${faces("a")}`;
       amount.textContent = rupees(b);
-      seesaw.querySelector(".beam").style.setProperty("--tilt", `${Math.max(-14, Math.min(14, -b / 60))}deg`);
+      amount.className = b < 0 ? "owe" : b === 0 ? "square" : "";
+      const bought = lines.filter((l) => l.split !== "settle");
+      spent.textContent = rupees(bought.reduce((s, l) => s + l.amt, 0));
+      count.textContent = `${lines.length} expense${lines.length === 1 ? "" : "s"}`;
       linesEl.innerHTML = lines
         .slice()
         .reverse()
         .slice(0, 4)
         .map((l) => {
-          const who = l.by === "b" ? "You" : "Asha";
-          const sub = l.split === "settle" ? `${who === "You" ? "You paid Asha back" : "Asha paid you back"}` : `${who} paid, ${l.split === "half" ? "half each" : `all for ${l.by === "b" ? "Asha" : "you"}`}`;
-          return `<div class="mline"><span class="tile"><svg><use href="#${l.icon}"/></svg></span><div>${l.t}<small>${sub}</small></div><b>${rupees(l.amt)}</b></div>`;
+          const e = Math.round(effect(l));
+          const sub = l.split === "settle" ? (l.by === "a" ? "Asha paid you back" : "You paid Asha back") : `${l.by === "b" ? "You" : "Asha"} paid ${rupees(l.amt)} · ${l.when ?? "today"}`;
+          const eff = l.split === "settle" ? `<div class="eff">${rupees(l.amt)}<small>settled</small></div>` : e > 0 ? `<div class="eff lent">+${rupees(e)}<small>you lent</small></div>` : `<div class="eff owe">−${rupees(e)}<small>you owe</small></div>`;
+          return `<div class="mline">${faces(l.by, "")}<div class="what">${l.t}<small>${sub}</small></div>${eff}</div>`;
         })
         .join("");
     }
@@ -752,7 +827,7 @@
     $("[data-settle]", root).addEventListener("click", () => {
       const b = Math.round(balance());
       if (b === 0) return toast("You're all square");
-      lines.push({ t: "Settle up", by: b > 0 ? "a" : "b", amt: Math.abs(b), split: "settle", icon: "i-check" });
+      lines.push({ t: "Settle up", by: b > 0 ? "a" : "b", amt: Math.abs(b), split: "settle" });
       if (!reduce) {
         for (let i = 0; i < 7; i++) {
           const c = document.createElement("span");
@@ -768,8 +843,6 @@
       setTimeout(() => confetti.at(balanceEl, 40, 0.7), reduce ? 0 : 700);
     });
     render();
-    seesaw.querySelector(".beam").style.setProperty("--tilt", "0deg");
-    onSeen(root, () => setTimeout(render, 300));
   }
 
   /* ---------- Demo: Activity and pokes ---------- */
@@ -780,22 +853,22 @@
     const push = $("[data-push]", root);
     const btn = $("[data-pokeasha]", root);
     const items = [
-      ["b", "Ben created “Water the plants”"],
-      ["a", "Asha added busy time · Yoga"],
-      ["b", "Ben marked done “Water the plants”"],
-      ["a", "Asha confirmed “Water the plants”"],
-      ["b", "Ben added Groceries ₹1,200"],
-      ["a", "Asha added Electricity bill ₹2,340"],
+      ["b", "i-plus", "Ben created · Water the plants"],
+      ["a", "i-cal", "Asha added busy time · Yoga"],
+      ["b", "i-check", "Ben marked done · Water the plants"],
+      ["a", "i-check", "Asha confirmed · Water the plants"],
+      ["b", "i-wallet", "Ben added ₹1,200 · Groceries"],
+      ["a", "i-pencil", "Asha changed the deadline · Gym"],
     ];
     let n = 0;
     let lastPoke = 0;
     const add = () => {
-      const [w, text] = items[n % items.length];
+      const [w, icon, text] = items[n % items.length];
       const li = document.createElement("li");
-      li.innerHTML = `<span class="face ${w === "a" ? "asha" : "ben"}">${w === "a" ? "A" : "B"}</span><span>${text}</span><small>now</small>`;
+      li.innerHTML = `<span class="ic" style="--c:var(--${w === "a" ? "asha" : "ben"})"><svg><use href="#${icon}"/></svg></span><div>${text}<small>now</small></div>`;
       feed.prepend(li);
       $$("li", feed).slice(6).forEach((x) => x.remove());
-      $$("li small", feed).forEach((s, k) => (s.textContent = k === 0 ? "now" : `${k * 3} min`));
+      $$("li small", feed).forEach((s, k) => (s.textContent = k === 0 ? "now" : `${k * 3} min ago`));
       n++;
     };
     onSeen(root, () => {
@@ -819,50 +892,40 @@
   }
 
   /* ---------- Demo: You (it recolours the website) ---------- */
+  /** The app's four colours: the fill, then the text shade on the light and the night grounds. */
+  const APP_COLOURS = {
+    lime: ["#D8F26A", "#516901", "#D9F469"],
+    blue: ["#9DB4FF", "#3B51C4", "#9DB4FF"],
+    lilac: ["#CDB8F5", "#6238B5", "#CDB8F5"],
+    peach: ["#FFC4A0", "#A2440F", "#FFC4A0"],
+  };
   function youDemo() {
     const root = $("#demo-you");
     if (!root) return;
-    const toast = toaster(root);
     const dots = $$("[data-dots] button", root);
     const segs = $$("[data-theme-seg] button", root);
-    const codeEl = $("[data-code]", root);
-    const CODE = "K7Q2XA9M";
-    const ALPHA = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
-    const savedBrand = store.get("yepdid.brand");
-    const pressBrand = (c) => dots.forEach((d) => d.setAttribute("aria-pressed", String(d.dataset.c.toLowerCase() === c.toLowerCase())));
-    if (savedBrand) pressBrand(savedBrand);
+    const pressColour = (k) => dots.forEach((d) => d.setAttribute("aria-pressed", String(d.dataset.c === k)));
+    pressColour(APP_COLOURS[store.get("yepdid.colour")] ? store.get("yepdid.colour") : "lime");
     for (const d of dots) {
       d.addEventListener("click", () => {
-        const c = d.dataset.c;
-        document.documentElement.style.setProperty("--brand", c);
-        store.set("yepdid.brand", c === "#A5E3AE" ? null : c);
-        pressBrand(c);
+        const key = d.dataset.c;
+        const st = document.documentElement.style;
+        if (key === "lime") {
+          for (const v of ["--brand", "--brand-text-l", "--brand-text-d"]) st.removeProperty(v);
+        } else {
+          const [fill, light, dark] = APP_COLOURS[key];
+          st.setProperty("--brand", fill);
+          st.setProperty("--brand-text-l", light);
+          st.setProperty("--brand-text-d", dark);
+        }
+        store.set("yepdid.colour", key === "lime" ? null : key);
+        pressColour(key);
         confetti.at(d, 24, 0.5);
       });
     }
     const pressTheme = (t) => segs.forEach((s) => s.setAttribute("aria-pressed", String(s.dataset.t === t)));
     theme.on((c) => pressTheme(c));
     for (const s of segs) s.addEventListener("click", () => theme.set(s.dataset.t, s));
-    const paint = (s) => {
-      codeEl.innerHTML = `${Array.from(s.slice(0, 4), (c) => `<span>${c}</span>`).join("")}<span class="dash">-</span>${Array.from(s.slice(4), (c) => `<span>${c}</span>`).join("")}`;
-    };
-    paint(CODE);
-    onSeen(root, async () => {
-      if (reduce) return;
-      for (let k = 0; k < 14; k++) {
-        paint(Array.from({ length: 8 }, (_, j) => (j < k - 5 ? CODE[j] : ALPHA[Math.floor(Math.random() * ALPHA.length)])).join(""));
-        await wait(70);
-      }
-      paint(CODE);
-    });
-    $("[data-copy]", root).addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText("K7Q2-XA9M");
-      } catch {
-        /* Clipboard blocked: the toast still answers. */
-      }
-      toast("Copied. (It's Asha's demo code!)");
-    });
   }
 
   /* ---------- Pairing: the code types itself in ---------- */
